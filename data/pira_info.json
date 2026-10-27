@@ -1,0 +1,50 @@
+[
+ {
+  "id": "prefeito",
+  "item": "Prefeito",
+  "valor": "Helinho Zanatta",
+  "ref": "Gestão 2025–2028"
+ },
+ {
+  "id": "area",
+  "item": "Área",
+  "valor": "1.377 km²",
+  "ref": "IBGE 2025"
+ },
+ {
+  "id": "receita",
+  "item": "Receita da Prefeitura",
+  "valor": "R$ 3,55 bi",
+  "ref": "2025 · IBGE/Siconfi"
+ },
+ {
+  "id": "despesa",
+  "item": "Despesa empenhada",
+  "valor": "R$ 3,20 bi",
+  "ref": "2025 · IBGE/Siconfi"
+ },
+ {
+  "id": "escola",
+  "item": "Escolarização de 6 a 14 anos",
+  "valor": "98,7%",
+  "ref": "IBGE (Censo)"
+ },
+ {
+  "id": "urb",
+  "item": "Urbanização",
+  "valor": "98,2%",
+  "ref": "2021 · TCE-SP"
+ },
+ {
+  "id": "iegm",
+  "item": "Nota de gestão do TCE-SP (IEG-M)",
+  "valor": "C+",
+  "ref": "2021 · caiu de B em 2018"
+ },
+ {
+  "id": "agtech",
+  "item": "Startups do agro (agtechs)",
+  "valor": "120",
+  "ref": "2019 · cerca de 40% do país · ABStartups"
+ }
+]

@@ -1,0 +1,22 @@
+[
+ {
+  "ano": 2026,
+  "valor": 83.4,
+  "fonte": "Prisma Fiscal (Fazenda), out/2026"
+ },
+ {
+  "ano": 2027,
+  "valor": 87.0,
+  "fonte": "Prisma Fiscal (Fazenda), out/2026"
+ },
+ {
+  "ano": 2029,
+  "valor": 87.8,
+  "fonte": "PLDO 2027 (pico projetado pelo governo)"
+ },
+ {
+  "ano": 2030,
+  "valor": 94.1,
+  "fonte": "Boletim Focus, via Ipea"
+ }
+]

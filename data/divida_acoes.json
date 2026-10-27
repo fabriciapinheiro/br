@@ -1,0 +1,51 @@
+[
+ {
+  "id": "arcabouco",
+  "acao": "Arcabouço fiscal",
+  "status": "Em vigor",
+  "detalhe": "Regra que limita o crescimento dos gastos a 70% do aumento da receita, entre 0,6% e 2,5% acima da inflação por ano, com metas de resultado primário.",
+  "fonte": "Lei Complementar 200/2023"
+ },
+ {
+  "id": "beneficios",
+  "acao": "Corte de 10% em benefícios fiscais",
+  "status": "Aprovado",
+  "detalhe": "Reduz incentivos tributários e aumenta impostos sobre bets, fintechs e juros sobre capital próprio. Potencial de cerca de R$ 22,4 bi a mais em 2026. Ficaram de fora Simples, Zona Franca, cesta básica e outros.",
+  "fonte": "Agência Brasil, dez/2025"
+ },
+ {
+  "id": "excecoes",
+  "acao": "Exceções às regras para 2026",
+  "status": "Aprovado no Senado",
+  "detalhe": "O PLP 74/2026 abriu exceções para alguns incentivos (data centers, áreas de livre comércio, resseguradoras, Pronon e Pronas), condicionadas a caber na meta. Críticos veem afrouxamento; o governo fala em segurança jurídica.",
+  "fonte": "Agência Senado, 03/set/2026"
+ },
+ {
+  "id": "meta27",
+  "acao": "Meta de superávit de 0,5% do PIB em 2027",
+  "status": "Em tramitação",
+  "detalhe": "Proposta na LDO 2027 (R$ 73,2 bi). Se cumprida, seria o primeiro superávit relevante desde 2022, mas o mercado projeta a dívida subindo mesmo assim.",
+  "fonte": "PLDO 2027"
+ },
+ {
+  "id": "tesouro",
+  "acao": "Gestão da dívida pelo Tesouro",
+  "status": "Em andamento",
+  "detalhe": "Mantém colchão de R$ 1,2 tri, alonga prazos e planeja reduzir a fatia atrelada à Selic, mas só quando houver superávits estruturais. A dívida deve fechar 2026 entre R$ 9,7 e R$ 10,3 tri.",
+  "fonte": "Tesouro Nacional, PAF 2026"
+ },
+ {
+  "id": "selic",
+  "acao": "Corte gradual da Selic",
+  "status": "Em andamento",
+  "detalhe": "O BC corta 0,25 ponto por reunião desde março de 2026 (de 15% para 13,75%). Cada ponto a menos reduz o custo de mais da metade da dívida. Próxima reunião: 3 e 4 de novembro.",
+  "fonte": "Banco Central"
+ },
+ {
+  "id": "cobranca",
+  "acao": "Pressão por um plano fiscal pós-eleição",
+  "status": "Em aberto",
+  "detalhe": "Bancos e analistas condicionam a melhora de dólar e bolsa à divulgação de um plano fiscal crível pelo governo reeleito. A escolha da equipe econômica é o próximo sinal.",
+  "fonte": "InvestNews, Money Times"
+ }
+]

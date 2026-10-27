@@ -1,0 +1,44 @@
+[
+ {
+  "item": "Instituições financeiras",
+  "pct": 31.22,
+  "estoque": 2792.1,
+  "desc": "Bancos e corretoras. Usam títulos como reserva e lastro de operações."
+ },
+ {
+  "item": "Previdência",
+  "pct": 22.63,
+  "estoque": 2024.37,
+  "desc": "Fundos de pensão e previdência privada. Investem no longo prazo, muitas vezes em títulos ligados à inflação."
+ },
+ {
+  "item": "Fundos de investimento",
+  "pct": 22.52,
+  "estoque": 2014.62,
+  "desc": "Fundos de renda fixa e multimercado. É por aqui que a maior parte das pessoas comuns financia a dívida, sem saber."
+ },
+ {
+  "item": "Estrangeiros",
+  "pct": 9.91,
+  "estoque": 886.3,
+  "desc": "Investidores de fora do país com títulos em reais."
+ },
+ {
+  "item": "Seguradoras",
+  "pct": 3.34,
+  "estoque": 299,
+  "desc": "Guardam títulos para pagar sinistros."
+ },
+ {
+  "item": "Tesouro Direto",
+  "pct": 3.04,
+  "estoque": 272,
+  "desc": "Pessoas físicas comprando direto. São 3,8 milhões de investidores ativos."
+ },
+ {
+  "item": "Governo e outros",
+  "pct": 7.34,
+  "estoque": null,
+  "desc": "Fundos públicos e demais detentores, não detalhados no relatório."
+ }
+]

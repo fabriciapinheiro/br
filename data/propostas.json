@@ -1,0 +1,182 @@
+[
+ {
+  "id": "6x1",
+  "titulo": "Fim da escala 6x1 e jornada de 40h",
+  "area": "Trabalho",
+  "status": "Aprovada",
+  "detalhe": "PEC 221/2019 aprovada no Senado por 75 a 1 (14/out) e promulgada em 16/out/2026.",
+  "depende": "Congresso",
+  "descricao": "O plano defende reduzir a jornada máxima de 44 para 40 horas semanais e garantir dois dias de descanso, sem corte de salário. A emenda já foi promulgada; falta regulamentar a transição por setor. Apoiadores falam em saúde e produtividade; parte do empresariado teme aumento de custos, principalmente em comércio e serviços."
+ },
+ {
+  "id": "seguranca",
+  "titulo": "PEC da Segurança Pública + Ministério da Segurança",
+  "area": "Segurança",
+  "status": "Em tramitação",
+  "detalhe": "CCJ do Senado aprovou em 14/out; votação no plenário foi adiada em 15/out. O ministério depende da PEC.",
+  "depende": "Congresso",
+  "descricao": "Coloca na Constituição o Sistema Único de Segurança Pública (SUSP), dá à União papel de coordenação, amplia a atuação da PF e da PRF, permite polícias municipais e reforça os fundos de segurança e penitenciário com dinheiro protegido de bloqueios. Depois de aprovada, o plano prevê criar o Ministério da Segurança Pública. A PEC aguarda votação no plenário do Senado."
+ },
+ {
+  "id": "apps",
+  "titulo": "Regulamentar trabalho por aplicativos",
+  "area": "Trabalho",
+  "status": "Travada",
+  "detalhe": "PLP 152/2025 com parecer na comissão especial da Câmara desde abr/2026; votação cancelada.",
+  "depende": "Congresso",
+  "descricao": "Criar regras para motoristas e entregadores de aplicativo: remuneração mínima por hora ou corrida, contribuição à Previdência e seguro, sem vínculo de CLT. O projeto (PLP 152/2025) está parado na Câmara por divergências sobre valor mínimo e autonomia dos trabalhadores, que também enfrentam resistência de parte da categoria."
+ },
+ {
+  "id": "arcabouco",
+  "titulo": "Manter o arcabouço fiscal",
+  "area": "Economia",
+  "status": "Em execução",
+  "detalhe": "Regra fiscal atual continua valendo.",
+  "depende": "Governo",
+  "descricao": "Manter a regra fiscal criada em 2023: gastos só podem crescer 70% do aumento da receita, entre 0,6% e 2,5% acima da inflação, com metas de resultado primário. O mercado cobra metas mais ambiciosas, já que a dívida segue subindo mesmo com a regra."
+ },
+ {
+  "id": "meta2027",
+  "titulo": "Superávit de 0,5% do PIB em 2027",
+  "area": "Economia",
+  "status": "Em tramitação",
+  "detalhe": "Meta está no projeto da LDO 2027 (PLN 2/2026), ainda não votado.",
+  "depende": "Congresso",
+  "descricao": "Projeto da LDO 2027 propõe economizar 0,5% do PIB (R$ 73,2 bi) antes do pagamento de juros. Precisa ser aprovado pelo Congresso junto com o Orçamento. Cumprir a meta depende de receitas novas ou de corte de gastos."
+ },
+ {
+  "id": "tributaria",
+  "titulo": "Etapas da reforma tributária + cashback para baixa renda",
+  "area": "Economia",
+  "status": "Em execução",
+  "detalhe": "Reforma do consumo em implantação; inclui isenção da cesta básica.",
+  "depende": "Governo",
+  "descricao": "Implantar as etapas da reforma tributária do consumo, que troca cinco tributos (PIS, Cofins, IPI, ICMS e ISS) por dois IVAs (CBS e IBS) até 2033, com cesta básica isenta e cashback de impostos para famílias de baixa renda inscritas no CadÚnico."
+ },
+ {
+  "id": "beneficios",
+  "titulo": "Rever benefícios fiscais ineficientes",
+  "area": "Economia",
+  "status": "Proposta",
+  "detalhe": "Sem projeto específico ainda.",
+  "depende": "Congresso",
+  "descricao": "Revisar isenções e incentivos fiscais considerados ineficientes, que somam centenas de bilhões por ano. Em 2025 o Congresso aprovou um corte linear de 10% em parte deles. O plano não detalha quais benefícios seriam revistos, e cada corte enfrenta pressão dos setores atingidos."
+ },
+ {
+  "id": "nib",
+  "titulo": "Ampliar a Nova Indústria Brasil",
+  "area": "Economia",
+  "status": "Em execução",
+  "detalhe": "Ampliação de programa existente (financiamento, inovação, compras públicas).",
+  "depende": "Governo",
+  "descricao": "Ampliar a Nova Indústria Brasil, política industrial lançada em 2024: crédito do BNDES, apoio à inovação e preferência para produtos nacionais em compras do governo. Críticos lembram que políticas parecidas no passado tiveram custo alto e resultado limitado; defensores apontam a disputa global por indústria verde e tecnologia."
+ },
+ {
+  "id": "salario",
+  "titulo": "Valorização do salário mínimo",
+  "area": "Trabalho",
+  "status": "Em execução",
+  "detalhe": "Regra atual: inflação + PIB de 2 anos antes, ganho real limitado a 2,5%. LDO 2027 prevê ao menos R$ 1.717.",
+  "depende": "Governo",
+  "descricao": "Manter a regra de reajuste do mínimo: inflação do ano anterior mais o crescimento do PIB de dois anos antes, com ganho real limitado a 2,5% desde 2025. A LDO 2027 prevê mínimo de ao menos R$ 1.717. O teto foi criado para conter o impacto nas contas da Previdência."
+ },
+ {
+  "id": "pejotizacao",
+  "titulo": "Combater a pejotização fraudulenta",
+  "area": "Trabalho",
+  "status": "Proposta",
+  "detalhe": "Sem projeto específico ainda.",
+  "depende": "A definir",
+  "descricao": "Combater a contratação como pessoa jurídica (PJ) usada para disfarçar vínculo de emprego e fugir de encargos trabalhistas. O tema também está no STF, que discute os limites da terceirização e da pejotização. O plano não traz um projeto específico."
+ },
+ {
+  "id": "previdencia",
+  "titulo": "Diversificar o custeio da Previdência e modernizar o INSS",
+  "area": "Previdência",
+  "status": "Proposta",
+  "detalhe": "Sem mudança definida em idade mínima ou regras gerais.",
+  "depende": "A definir",
+  "descricao": "Buscar novas fontes de financiamento para a Previdência, facilitar a contribuição de quem tem carreira com interrupções (autônomos, informais, mulheres que saem para cuidar de filhos) e modernizar o INSS para reduzir filas. Não propõe mudar idade mínima nem regras gerais de aposentadoria."
+ },
+ {
+  "id": "integral",
+  "titulo": "Ampliar ensino integral e Pé-de-Meia",
+  "area": "Educação",
+  "status": "Em execução",
+  "detalhe": "Ampliação de programas existentes.",
+  "depende": "Governo",
+  "descricao": "Expandir as escolas de tempo integral e fortalecer o Pé-de-Meia, poupança paga a alunos de baixa renda do ensino médio que frequentam as aulas e concluem as etapas. Ambos já existem; a proposta é aumentar o alcance."
+ },
+ {
+  "id": "universidades",
+  "titulo": "Universidade Indígena, do Esporte e ITA no Ceará",
+  "area": "Educação",
+  "status": "Em execução",
+  "detalhe": "Promessa de concluir a implantação.",
+  "depende": "Governo",
+  "descricao": "Concluir a implantação da Universidade Indígena, da Universidade do Esporte e de um campus do ITA no Ceará, anunciados no mandato atual."
+ },
+ {
+  "id": "saude",
+  "titulo": "Ampliar Agora Tem Especialistas, Saúde da Família e Farmácia Popular com exames",
+  "area": "Saúde",
+  "status": "Em execução",
+  "detalhe": "Ampliação de programas existentes.",
+  "depende": "Governo",
+  "descricao": "Ampliar o Agora Tem Especialistas (para reduzir filas de consultas, exames e cirurgias), as equipes de Saúde da Família e o atendimento domiciliar, aumentar a produção nacional de remédios e vacinas e incluir exames laboratoriais gratuitos no Farmácia Popular."
+ },
+ {
+  "id": "cuidados",
+  "titulo": "Ampliar a Política Nacional de Cuidados",
+  "area": "Social",
+  "status": "Em execução",
+  "detalhe": "Acolhimento infantil, restaurantes populares, cozinhas solidárias, cuidadores.",
+  "depende": "Governo",
+  "descricao": "Ampliar a Política Nacional de Cuidados, voltada a quem cuida de crianças, idosos e pessoas com deficiência (em geral mulheres): mais vagas de acolhimento infantil, restaurantes populares, cozinhas solidárias e formação de cuidadores profissionais."
+ },
+ {
+  "id": "crime",
+  "titulo": "Continuar o Brasil Contra o Crime Organizado",
+  "area": "Segurança",
+  "status": "Em execução",
+  "detalhe": "Lançado em 2026 com R$ 10 bi previstos para infraestrutura.",
+  "depende": "Governo",
+  "descricao": "Dar continuidade ao programa Brasil Contra o Crime Organizado, lançado em 2026 com R$ 10 bi previstos para infraestrutura de segurança, com foco em investigação financeira das facções, integração das polícias, câmeras corporais e presídios federais."
+ },
+ {
+  "id": "pac",
+  "titulo": "Nova etapa do PAC",
+  "area": "Infraestrutura",
+  "status": "Proposta",
+  "detalhe": "Obras públicas, concessões e investimento privado.",
+  "depende": "Governo",
+  "descricao": "Executar uma nova etapa do Novo PAC, combinando obras públicas com concessões e investimento privado em rodovias, ferrovias, portos, energia, saneamento e moradia. O ritmo depende do espaço no Orçamento e do interesse de investidores."
+ },
+ {
+  "id": "desmatamento",
+  "titulo": "Desmatamento líquido zero até 2030",
+  "area": "Meio ambiente",
+  "status": "Em execução",
+  "detalhe": "Meta reafirmada no plano.",
+  "depende": "Governo",
+  "descricao": "Reafirma a meta de desmatamento líquido zero até 2030 (o que for derrubado precisa ser compensado com restauração), com fiscalização, regularização fundiária, proteção de terras públicas e recuperação de áreas degradadas. O desmatamento na Amazônia já está no menor nível da série."
+ },
+ {
+  "id": "emendas",
+  "titulo": "Mudar o sistema de emendas parlamentares",
+  "area": "Instituições",
+  "status": "Proposta",
+  "detalhe": "Plano fala em discutir mudanças; sem texto definido.",
+  "depende": "Congresso",
+  "descricao": "Propõe discutir mudanças no sistema de emendas parlamentares, que hoje destinam mais de R$ 50 bi por ano do Orçamento por indicação de deputados e senadores, com críticas de falta de transparência pelo STF e por órgãos de controle. Depende do próprio Congresso, que resiste a perder esse poder."
+ },
+ {
+  "id": "govbr",
+  "titulo": "Digitalizar serviços e aperfeiçoar o Gov.br",
+  "area": "Gestão",
+  "status": "Em execução",
+  "detalhe": "Continuidade.",
+  "depende": "Governo",
+  "descricao": "Digitalizar mais serviços públicos, integrar sistemas entre ministérios e melhorar o Gov.br, que já reúne login e serviços de mais de 150 milhões de brasileiros."
+ }
+]

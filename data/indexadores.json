@@ -1,0 +1,22 @@
+[
+ {
+  "item": "Selic (pós-fixado)",
+  "pct": 52.74,
+  "desc": "Custo muda com os juros do BC. Maior fatia da série histórica; o plano do Tesouro para 2026 aceita de 49% a 53%."
+ },
+ {
+  "item": "Inflação (IPCA)",
+  "pct": 23.22,
+  "desc": "Rende inflação mais uma taxa fixa."
+ },
+ {
+  "item": "Prefixado",
+  "pct": 20.31,
+  "desc": "Taxa definida na compra; dá previsibilidade ao Tesouro."
+ },
+ {
+  "item": "Câmbio e outros",
+  "pct": 3.73,
+  "desc": "Inclui a dívida externa, em dólar e euro (3,75% do total)."
+ }
+]
