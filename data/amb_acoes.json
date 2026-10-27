@@ -1,0 +1,44 @@
+[
+ {
+  "id": "ppcd",
+  "acao": "Planos de combate ao desmatamento (PPCDAm e PPCerrado)",
+  "status": "Em vigor",
+  "detalhe": "Retomados em 2023, coordenam fiscalização, ordenamento do território e incentivos econômicos nos dois biomas.",
+  "fonte": "MMA, out/2026"
+ },
+ {
+  "id": "ibama",
+  "acao": "Fiscalização do Ibama e ICMBio",
+  "status": "Em andamento",
+  "detalhe": "76 mil ações de fiscalização e R$ 11,8 bi em multas entre 2023 e 2026, guiadas pelos alertas do Deter. O ICMBio lavrou 11,9 mil autos de infração.",
+  "fonte": "MMA, out/2026"
+ },
+ {
+  "id": "areas",
+  "acao": "Novas áreas protegidas",
+  "status": "Em andamento",
+  "detalhe": "18 unidades de conservação federais criadas e 20 terras indígenas homologadas desde 2023.",
+  "fonte": "MMA, out/2026"
+ },
+ {
+  "id": "credito",
+  "acao": "Crédito rural ligado ao meio ambiente",
+  "status": "Em vigor",
+  "detalhe": "O Plano Safra 2026/27 dá juros menores a produtores que cumprem critérios ambientais. Também há pagamento por serviços ambientais (Bolsa Verde, Floresta+).",
+  "fonte": "MMA, out/2026"
+ },
+ {
+  "id": "municipios",
+  "acao": "União com Municípios e Fundo Amazônia",
+  "status": "Em andamento",
+  "detalhe": "R$ 780 mi para 80 municípios que mais desmatavam, e R$ 147,6 mi do Fundo Amazônia para o sistema de monitoramento SIM-Biomas.",
+  "fonte": "MMA, out/2026"
+ },
+ {
+  "id": "fogo",
+  "acao": "Combate ao fogo no Amazonas",
+  "status": "Em aberto",
+  "detalhe": "Emergência reconhecida em 36 municípios, com 11 aeronaves e cerca de 290 brigadistas federais. O governo atribui o fogo a ação humana para degradar a floresta.",
+  "fonte": "Poder360, out/2026"
+ }
+]

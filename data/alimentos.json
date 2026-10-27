@@ -1,0 +1,47 @@
+[
+ {
+  "item": "Tomate",
+  "grupo": "Hortifrúti",
+  "var": 37.76
+ },
+ {
+  "item": "Batata-inglesa",
+  "grupo": "Hortifrúti",
+  "var": 24.07
+ },
+ {
+  "item": "Cebola",
+  "grupo": "Hortifrúti",
+  "var": 10.14
+ },
+ {
+  "item": "Frutas",
+  "grupo": "Hortifrúti",
+  "var": -1.12
+ },
+ {
+  "item": "Arroz",
+  "grupo": "Grãos e básicos",
+  "var": 4.56
+ },
+ {
+  "item": "Frango inteiro",
+  "grupo": "Proteínas",
+  "var": -1.96
+ },
+ {
+  "item": "Frango em pedaços",
+  "grupo": "Proteínas",
+  "var": -1.41
+ },
+ {
+  "item": "Alimentação no domicílio",
+  "grupo": "Total",
+  "var": 0.96
+ },
+ {
+  "item": "Alimentação e bebidas",
+  "grupo": "Total",
+  "var": 0.83
+ }
+]

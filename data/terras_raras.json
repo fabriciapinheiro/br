@@ -1,0 +1,38 @@
+[
+ {
+  "id": "reserva",
+  "item": "Reserva",
+  "valor": "2ª maior do mundo",
+  "detalhe": "Atrás apenas da China. As jazidas se concentram em Goiás, Minas Gerais, Bahia e Amazonas."
+ },
+ {
+  "id": "producao",
+  "item": "Produção hoje",
+  "valor": "Só concentrado",
+  "detalhe": "O país exporta carbonato misto de terras raras sem separar os elementos, etapa em que está o maior valor. A Serra Verde, em Minaçu (GO), é a única operação comercial."
+ },
+ {
+  "id": "serra",
+  "item": "Venda da Serra Verde",
+  "valor": "Concluída em 8/set/2026",
+  "detalhe": "Comprada pela USA Rare Earth, com fornecimento exclusivo para os EUA por 15 anos e US$ 565 mi de financiamento da agência americana DFC."
+ },
+ {
+  "id": "lei",
+  "item": "Lei 15.506/2026",
+  "valor": "Em vigor",
+  "detalhe": "Cria a política nacional de minerais críticos e um conselho ligado à Presidência que passa a decidir sobre venda de controle de mineradoras do setor. Críticos dizem que não protege empresa nacional."
+ },
+ {
+  "id": "controle",
+  "item": "Quem controla",
+  "valor": "Capital estrangeiro",
+  "detalhe": "Segundo dados da ANM citados no Conjur, todos os projetos de terras raras em lavra ou pesquisa avançada têm controle estrangeiro."
+ },
+ {
+  "id": "porque",
+  "item": "Por que importa",
+  "valor": "Carros elétricos, eólica, defesa",
+  "detalhe": "Terras raras viram ímãs para motores elétricos, turbinas, celulares e equipamentos militares. A China domina mais de 80% do refino mundial, por isso EUA e Europa buscam outros fornecedores."
+ }
+]

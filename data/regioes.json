@@ -1,0 +1,128 @@
+[
+ {
+  "id": "am-pa",
+  "bioma": "Amazônia",
+  "uf": "Pará",
+  "km2": 1130,
+  "var": -45.3
+ },
+ {
+  "id": "am-mt",
+  "bioma": "Amazônia",
+  "uf": "Mato Grosso",
+  "km2": 849,
+  "var": -46.7
+ },
+ {
+  "id": "am-am",
+  "bioma": "Amazônia",
+  "uf": "Amazonas",
+  "km2": 525,
+  "var": -46.4
+ },
+ {
+  "id": "am-rr",
+  "bioma": "Amazônia",
+  "uf": "Roraima",
+  "km2": 286,
+  "var": 0.4
+ },
+ {
+  "id": "am-ac",
+  "bioma": "Amazônia",
+  "uf": "Acre",
+  "km2": 252,
+  "var": -22.2
+ },
+ {
+  "id": "am-ro",
+  "bioma": "Amazônia",
+  "uf": "Rondônia",
+  "km2": 149,
+  "var": -34.9
+ },
+ {
+  "id": "am-ma",
+  "bioma": "Amazônia",
+  "uf": "Maranhão",
+  "km2": 128,
+  "var": -39.0
+ },
+ {
+  "id": "am-ap",
+  "bioma": "Amazônia",
+  "uf": "Amapá",
+  "km2": 8,
+  "var": -52.9
+ },
+ {
+  "id": "am-to",
+  "bioma": "Amazônia",
+  "uf": "Tocantins",
+  "km2": 8,
+  "var": -73.3
+ },
+ {
+  "id": "ce-ma",
+  "bioma": "Cerrado",
+  "uf": "Maranhão",
+  "km2": 1718.59,
+  "var": -14.3
+ },
+ {
+  "id": "ce-to",
+  "bioma": "Cerrado",
+  "uf": "Tocantins",
+  "km2": 1263.06,
+  "var": -15.2
+ },
+ {
+  "id": "ce-pi",
+  "bioma": "Cerrado",
+  "uf": "Piauí",
+  "km2": 625.24,
+  "var": -53.7
+ },
+ {
+  "id": "ce-ba",
+  "bioma": "Cerrado",
+  "uf": "Bahia",
+  "km2": 489.75,
+  "var": -38.0
+ },
+ {
+  "id": "ce-mg",
+  "bioma": "Cerrado",
+  "uf": "Minas Gerais",
+  "km2": 467.34,
+  "var": -8.7
+ },
+ {
+  "id": "ce-mt",
+  "bioma": "Cerrado",
+  "uf": "Mato Grosso",
+  "km2": 454.52,
+  "var": -0.2
+ },
+ {
+  "id": "ce-go",
+  "bioma": "Cerrado",
+  "uf": "Goiás",
+  "km2": 210.37,
+  "var": -8.9
+ },
+ {
+  "id": "ce-ms",
+  "bioma": "Cerrado",
+  "uf": "Mato Grosso do Sul",
+  "km2": 208.93,
+  "var": -23.3
+ },
+ {
+  "id": "ce-ou",
+  "bioma": "Cerrado",
+  "uf": "Outros (PA, RO, DF, SP, PR)",
+  "km2": 78.9,
+  "var": -39.0
+ }
+]

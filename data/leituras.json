@@ -1,0 +1,37 @@
+[
+ {
+  "id": "brasil",
+  "titulo": "Qual o impacto disso?",
+  "texto": "O emprego está no melhor momento da série e a renda vem subindo, mas o resto do quadro pede cautela: inflação acima do teto, juros entre os mais altos do mundo, crescimento desacelerando e dívida subindo. Na prática, o dia a dia de quem trabalha melhorou, enquanto crédito caro e incerteza fiscal pesam sobre consumo a prazo e investimento. A reação do mercado ao resultado da eleição (dólar e bolsa) mostra que os próximos meses dependem de como o governo vai tratar as contas públicas."
+ },
+ {
+  "id": "social",
+  "titulo": "Qual o impacto disso?",
+  "texto": "Os indicadores sociais estão nos melhores níveis da série recente: menos fome, menos pobreza e menos desigualdade, com o Brasil fora do Mapa da Fome da ONU. Os motivos são mercado de trabalho forte, salário mínimo com ganho real e transferências como Bolsa Família e BPC. O ponto de atenção é a sustentabilidade: parte do avanço depende de gasto público num momento de dívida crescente, e um em cada quatro lares ainda não tem comida garantida."
+ },
+ {
+  "id": "divida",
+  "titulo": "Qual o impacto disso?",
+  "texto": "A dívida não está em crise de pagamento: é quase toda em reais, com credores locais e um colchão de caixa para mais de sete meses de vencimentos. O problema é a trajetória e o custo. Mais da metade está atrelada à Selic, então juros altos fazem a dívida crescer sozinha, e as projeções apontam alta até pelo menos 2029. Quanto mais ela cresce, menos espaço sobra no orçamento e mais caro fica o crédito para todos."
+ },
+ {
+  "id": "congresso",
+  "titulo": "Qual o impacto disso?",
+  "texto": "O fim da escala 6x1 já está na Constituição e deve mudar a rotina de milhões de trabalhadores, com regras de transição ainda a regulamentar. Até dezembro, o Congresso precisa votar o Orçamento de 2027, que define salário mínimo e a meta fiscal, e decidir a PEC da Segurança. São as votações que mais vão pesar no bolso e nos serviços públicos em 2027."
+ },
+ {
+  "id": "pira",
+  "titulo": "Qual o impacto disso?",
+  "texto": "Piracicaba é uma cidade rica em produção (PIB per capita perto do dobro da média do país), com boa base escolar e população crescendo. O emprego formal segue positivo, mas em ritmo menor que nos anos anteriores, acompanhando o freio da economia nacional. Os desafios estão em acompanhar o crescimento com saúde básica, mobilidade e moradia, e alguns indicadores oficiais da cidade estão desatualizados."
+ },
+ {
+  "id": "compra",
+  "titulo": "Qual o impacto disso?",
+  "texto": "O poder de compra melhorou nos últimos anos: salário mínimo com ganho real e renda do trabalho em recorde. Mas a comida segue cara. A cesta básica em São Paulo come quase dois terços do mínimo, e a inflação voltou a passar do teto em setembro, puxada por energia e alimentos como tomate, batata e arroz. No campo, a safra recorde de soja e milho sustenta exportações, mas não chega ao prato na mesma medida: arroz e feijão tiveram safras menores, e os preços pagos ao produtor caíram."
+ },
+ {
+  "id": "amb",
+  "titulo": "Qual o impacto disso?",
+  "texto": "O desmatamento caiu ao menor nível já medido na Amazônia e no Cerrado, resultado de fiscalização, novas áreas protegidas e crédito rural ligado a critérios ambientais. Isso reduz emissões e fortalece o país em negociações comerciais. O alerta fica para o fogo: o Amazonas mais que dobrou os focos em 2026, com fumaça afetando a saúde em Manaus. Nas terras raras, o Brasil tem a segunda maior reserva do mundo, mas ainda exporta só o minério concentrado, e a venda da principal mina a uma empresa americana levou o governo a criar uma lei para controlar o setor."
+ }
+]

@@ -1,0 +1,82 @@
+[
+ {
+  "id": "pec6x1",
+  "materia": "PEC 221/2019 — fim da escala 6x1",
+  "tipo": "PEC",
+  "situacao": "Promulgada",
+  "data": "2026-10-16",
+  "resumo": "Jornada de 44h para 40h e dois dias de descanso, sem redução salarial. 75 votos a 1 no Senado."
+ },
+ {
+  "id": "pecseg",
+  "materia": "PEC 18/2025 — Segurança Pública",
+  "tipo": "PEC",
+  "situacao": "Aguarda plenário",
+  "data": "2026-10-15",
+  "resumo": "Coloca o SUSP na Constituição, amplia papel da PF e PRF, permite polícias municipais e reforça fundos. CCJ aprovou em 14/out; plenário adiou em 15/out."
+ },
+ {
+  "id": "plp74",
+  "materia": "PLP 74/2026 — exceções a regras fiscais de 2026",
+  "tipo": "Projeto de lei",
+  "situacao": "Aguarda sanção",
+  "data": "2026-09-03",
+  "resumo": "Aprovado por unanimidade no Senado. Abre exceções para alguns incentivos tributários e transferências a municípios pequenos endividados, condicionadas à meta fiscal."
+ },
+ {
+  "id": "ldo",
+  "materia": "PLN 2/2026 — LDO 2027",
+  "tipo": "Orçamento",
+  "situacao": "Pendente na CMO",
+  "data": "2026-07-31",
+  "resumo": "Diretrizes do Orçamento de 2027: meta de superávit de 0,5% do PIB e salário mínimo de ao menos R$ 1.717. Será analisada junto com a LOA."
+ },
+ {
+  "id": "loa",
+  "materia": "LOA 2027 — Orçamento anual",
+  "tipo": "Orçamento",
+  "situacao": "Em análise",
+  "data": "2026-08-31",
+  "resumo": "Proposta enviada pelo governo até 31/ago; Congresso precisa votar até o fim do ano."
+ },
+ {
+  "id": "vetos",
+  "materia": "Vetos presidenciais pendentes",
+  "tipo": "Vetos",
+  "situacao": "Trancando a pauta",
+  "data": "2026-08-01",
+  "resumo": "Cerca de 87 vetos aguardando sessão do Congresso, entre eles os da regulamentação da reforma tributária, do marco do setor elétrico e da Lei da Dosimetria (8 de janeiro)."
+ },
+ {
+  "id": "minerais",
+  "materia": "Política Nacional de Minerais Críticos",
+  "tipo": "Projeto de lei",
+  "situacao": "Aguarda Senado",
+  "data": "2026-08-14",
+  "resumo": "Já aprovado pela Câmara; enviado às comissões do Senado como prioridade."
+ },
+ {
+  "id": "desenrola",
+  "materia": "MPV 1.373/2026 — Desenrola Adimplentes e Fies Empreendedor",
+  "tipo": "Medida provisória",
+  "situacao": "Em tramitação",
+  "data": "2026-08-17",
+  "resumo": "Medida provisória em vigor, precisa ser votada pelo Congresso para não perder validade."
+ },
+ {
+  "id": "mei",
+  "materia": "Teto do MEI para R$ 140 mil",
+  "tipo": "Projeto de lei",
+  "situacao": "Aprovado na Câmara",
+  "data": "2026-10-14",
+  "resumo": "Segue para o Senado."
+ },
+ {
+  "id": "apps",
+  "materia": "PLP 152/2025 — trabalho por aplicativos",
+  "tipo": "Projeto de lei",
+  "situacao": "Parado na Câmara",
+  "data": "2026-04-07",
+  "resumo": "Parecer apresentado na comissão especial; ainda precisa passar pela Câmara antes de chegar ao Senado."
+ }
+]

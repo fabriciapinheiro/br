@@ -1,0 +1,807 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel Brasil</title>
+<meta name="description" content="Indicadores do Brasil e de Piracicaba: economia, impacto social, poder de compra, meio ambiente, dívida pública, Congresso e plano de governo.">
+<style>
+:root{--color-fg:#1f1e1d;--color-fg-muted:#6b6862;--color-bg:#faf9f5;--color-panel:#ffffff;--color-border-line:#e6e3da;--color-ok:#2f7d4f;--color-warn:#a5680e;--color-bad:#b3412f;
+--cds-chart-muted:#9a968c;--cds-chart-grid:#ece9e1;--cds-chart-axis:#bdb8ad;--cds-chart-reference:#8f8a80;--cds-chart-status-critical:#c4553f;--cds-surface-popover:#ffffff;--cds-border:#e0ddd4;--cds-text-secondary:#6b6862;--cds-shadow-popover:0 4px 16px rgba(0,0,0,.12);
+--cds-radius:10px;--cds-pad-xs:4px;--cds-pad-sm:8px;--cds-pad-md:12px;--cds-pad-lg:16px;--cds-gap-xs:4px;--cds-gap-sm:8px;--cds-gap-md:14px;--cds-gap-lg:20px;
+--cds-font-size-caption:12.5px;--cds-font-size-body:14.5px;--cds-font-size-heading:16px;--cds-font-size-title:26px;--cds-font-weight-medium:600;--cds-dur-slow:.3s;
+--font-anthropic-sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--font-anthropic-serif:Georgia,"Times New Roman",serif;--c1:#3b6fd8}
+@media (prefers-color-scheme:dark){:root{--color-fg:#ecebe6;--color-fg-muted:#a6a39b;--color-bg:#1b1a18;--color-panel:#242320;--color-border-line:#3a3833;--color-ok:#6cc48f;--color-warn:#e3a94a;--color-bad:#ec7a66;
+--cds-chart-muted:#7d7a73;--cds-chart-grid:#33312d;--cds-chart-axis:#55524c;--cds-chart-reference:#8a867e;--cds-chart-status-critical:#e2705a;--cds-surface-popover:#2c2b28;--cds-border:#44423d;--cds-text-secondary:#a6a39b;--c1:#7aa2f0}}
+html,body{margin:0;background:var(--color-bg);color:var(--color-fg);font-family:var(--font-anthropic-sans)}
+#dash-root{padding:16px var(--dash-gutter,16px) 40px}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="data.js"></script>
+<script>
+(function(){
+  const DATA = window.DATA, P0 = window.PARAMS;
+  let params = Object.assign({}, P0);
+  const cbs = [], calcs = {};
+  const cs = getComputedStyle(document.documentElement);
+  const c1 = cs.getPropertyValue('--c1').trim() || '#3b6fd8';
+  function run(){ cbs.forEach(fn => { try { fn(); } catch (e) { console.error(e); } }); }
+  window.dash = {
+    colors: [c1, '#d8843b', '#3ba77a', '#a35bd8', '#d83b6f', '#8a8a3b', '#3bb3d8', '#7a5c3b'],
+    data(id){
+      if (calcs[id]) { const c = calcs[id]; try { return { status: 'ok', data: c.fn(...c.inputs.map(i => dash.data(i).data)), meta: [] }; } catch (e) { return { status: 'error', data: [], message: String(e) }; } }
+      if (DATA[id]) return { status: 'ok', data: DATA[id], columns: Object.keys(DATA[id][0] || {}), meta: [] };
+      return { status: 'missing', data: [] };
+    },
+    onData(fn){ cbs.push(fn); try { fn(); } catch (e) { console.error(e); } },
+    calc(id, def){ calcs[id] = def; },
+    loader(){},
+    params(){ return params; },
+    setParams(o){ params = Object.assign({}, params, o); run(); },
+    resetParams(){ params = Object.assign({}, P0); run(); },
+    setLink(n){ try { history.replaceState(null, '', '#' + n); } catch (e) {} },
+    refresh(){}
+  };
+  let t; addEventListener('resize', () => { clearTimeout(t); t = setTimeout(run, 150); });
+})();
+</script>
+</head>
+<body>
+<div id="dash-root">
+<style>
+#dash-root { --dash-gutter: var(--cds-pad-md); }
+.lx { font-family: var(--font-anthropic-sans); max-width: 60rem; margin-inline: auto; display: flex; flex-direction: column; gap: var(--cds-gap-lg); }
+.lx-head h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; line-height: 1.2; }
+.lx-take { color: var(--color-fg-muted); font-size: var(--cds-font-size-body); margin: var(--cds-gap-xs) 0 0; line-height: 1.45; }
+.lx-toprow { display: flex; justify-content: space-between; align-items: center; gap: var(--cds-gap-sm); flex-wrap: wrap; }
+.lx-local { display: flex; align-items: center; gap: 6px; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.lx-local select { font: inherit; font-size: var(--cds-font-size-body); color: var(--color-fg); background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: 999px; padding: 6px 12px; }
+.lx-tabs[hidden] { display: none; }
+.lx-mand { margin-top: var(--cds-gap-sm); }
+.lx-mand td.num, .lx-mand th.num { text-align: right; }
+.lx-tabs { display: flex; gap: var(--cds-gap-xs); overflow-x: auto; position: sticky; top: 0; z-index: 3; background: var(--color-bg); padding: var(--cds-pad-xs) 0; scrollbar-width: none; }
+.lx-tabs button { flex: 0 0 auto; font: inherit; font-size: var(--cds-font-size-body); padding: var(--cds-pad-xs) var(--cds-pad-md); border-radius: 999px; border: 1px solid var(--color-border-line); background: var(--color-panel); color: var(--color-fg); cursor: pointer; }
+.lx-tabs button[aria-selected="true"] { background: var(--color-fg); color: var(--color-bg); border-color: var(--color-fg); }
+.lx-page[hidden] { display: none; }
+.lx-page { display: flex; flex-direction: column; gap: var(--cds-gap-md); }
+.lx-intro { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: 0; line-height: 1.45; }
+.lx-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr)); gap: var(--cds-gap-sm); }
+.lx-grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: var(--cds-gap-md); }
+.lx-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); min-width: 0; }
+.lx-card h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.lx-note { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: 2px 0 var(--cds-gap-sm); line-height: 1.4; }
+.lx-tile { padding: var(--cds-pad-md); display: flex; flex-direction: column; gap: 2px; font: inherit; color: var(--color-fg); text-align: left; cursor: pointer; align-items: flex-start; }
+.lx-tile[aria-pressed="true"] { border-color: var(--color-fg); box-shadow: inset 0 0 0 1px var(--color-fg); }
+.lx-tile .lx-lbl { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.lx-big { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; }
+.lx-tile .lx-ref { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.3; }
+.lx-tom { font-size: 11px; border-radius: 999px; padding: 1px 8px; border: 1px solid currentColor; margin-top: 4px; }
+.t-Favorável { color: var(--color-ok); } .t-Atenção { color: var(--color-warn); } .t-Desfavorável { color: var(--color-bad); }
+.lx-impact { border-left: 3px solid var(--color-fg); }
+.lx-impact h2 { margin-bottom: var(--cds-gap-xs); }
+.lx-impact p { margin: 0; line-height: 1.55; font-size: var(--cds-font-size-body); }
+.lx-det h3 { font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); margin: var(--cds-gap-md) 0 4px; }
+.lx-det p { margin: 0; line-height: 1.5; font-size: var(--cds-font-size-body); }
+.lx-det p.lx-note, .lx-det span.lx-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.lx-det .lx-dimp { background: var(--color-bg); border-radius: var(--cds-radius); padding: var(--cds-pad-sm) var(--cds-pad-md); margin-top: var(--cds-gap-md); }
+.lx-det .lx-dimp h3 { margin-top: 0; }
+.lx-det { scroll-margin-top: 64px; }
+.lx-deth { display: flex; justify-content: space-between; gap: var(--cds-gap-sm); align-items: flex-start; }
+.lx-x { font: inherit; font-size: 22px; line-height: 1; background: none; border: 0; color: var(--color-fg-muted); cursor: pointer; padding: 0 4px; }
+.lx-dnow { display: flex; align-items: center; gap: var(--cds-gap-sm); flex-wrap: wrap; }
+.lx-chart { position: relative; min-height: 200px; }
+.lx-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); white-space: nowrap; z-index: 2; }
+.lx-tip .lx-tipd { color: var(--cds-text-secondary); }
+table.lx-t { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-body); font-variant-numeric: tabular-nums; }
+.lx-t th { text-align: left; font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); padding: 4px 6px; border-bottom: 1px solid var(--color-border-line); }
+.lx-t td { padding: 6px; border-bottom: 1px solid var(--color-border-line); vertical-align: top; }
+.lx-t .num { text-align: right; }
+.lx-meta { font-size: 11px; color: var(--color-fg-muted); margin-top: 3px; }
+.lx-bars { display: flex; flex-direction: column; gap: var(--cds-gap-sm); }
+.lx-bar .lx-bl { display: flex; justify-content: space-between; gap: var(--cds-gap-sm); font-size: var(--cds-font-size-body); }
+.lx-bar .lx-bl span:last-child { font-variant-numeric: tabular-nums; }
+.lx-bar .lx-track { height: 10px; background: var(--color-bg); border-radius: 5px; margin-top: 3px; }
+.lx-bar .lx-fill { height: 100%; border-radius: 5px; }
+.lx-bar .lx-src { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-top: 3px; line-height: 1.4; }
+.lx-list { display: flex; flex-direction: column; gap: var(--cds-gap-sm); }
+.lx-s { border-bottom: 1px solid var(--color-border-line); padding-bottom: var(--cds-pad-sm); }
+.lx-s:last-child { border-bottom: 0; padding-bottom: 0; }
+.lx-sh { display: flex; justify-content: space-between; align-items: baseline; gap: var(--cds-gap-sm); flex-wrap: wrap; }
+.lx-s strong { font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); }
+.lx-badge { font-size: 11px; border-radius: 999px; padding: 2px 8px; border: 1px solid currentColor; white-space: nowrap; }
+.lx-s p { margin: 4px 0 0; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.45; }
+.lx-chips { display: flex; gap: var(--cds-gap-xs); overflow-x: auto; scrollbar-width: none; }
+.lx-chips button { flex: 0 0 auto; font: inherit; font-size: var(--cds-font-size-caption); padding: 4px 10px; border-radius: 999px; border: 1px solid var(--color-border-line); background: transparent; color: var(--color-fg); cursor: pointer; }
+.lx-chips button[aria-pressed="true"] { background: var(--color-fg); color: var(--color-bg); }
+.lx-board { display: flex; align-items: flex-start; gap: var(--cds-gap-sm); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: var(--cds-pad-sm); min-height: 12rem; }
+.lx-col { flex: 0 0 min(80vw, 16rem); scroll-snap-align: start; background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-sm); display: flex; flex-direction: column; gap: var(--cds-gap-xs); }
+.lx-colh { display: flex; align-items: center; justify-content: space-between; font-size: var(--cds-font-size-caption); font-weight: var(--cds-font-weight-medium); padding: 2px 4px var(--cds-pad-xs); }
+.lx-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+.lx-n { color: var(--color-fg-muted); font-variant-numeric: tabular-nums; }
+.lx-k { background: var(--color-bg); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-sm); display: flex; flex-direction: column; gap: 4px; }
+.lx-k strong { font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); line-height: 1.3; }
+.lx-k p { margin: 0; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.4; }
+.lx-k { cursor: pointer; }
+.lx-k:hover, .lx-k:focus-visible { border-color: var(--color-fg-muted); outline: none; }
+.lx-k.lx-open { border-color: var(--color-fg); }
+.lx-kdesc { border-top: 1px solid var(--color-border-line); padding-top: 6px; margin-top: 2px; }
+.lx-kdesc h4 { margin: 0 0 3px; font-size: var(--cds-font-size-caption); font-weight: var(--cds-font-weight-medium); }
+.lx-k .lx-kdesc p { color: var(--color-fg); font-size: var(--cds-font-size-caption); line-height: 1.5; }
+.lx-k .lx-kfoot { font-size: 11px; }
+.lx-tag { font-size: 11px; color: var(--color-fg-muted); border: 1px solid var(--color-border-line); border-radius: 999px; padding: 1px 7px; align-self: flex-start; }
+.lx-empty { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); padding: 4px; }
+.lx-agrp { margin-bottom: var(--cds-gap-md); }
+.lx-agrp h3 { font-size: var(--cds-font-size-caption); font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); margin: 0 0 6px; text-transform: uppercase; letter-spacing: .04em; }
+.lx-arow { display: grid; grid-template-columns: minmax(6rem, 9rem) 1fr 4.2rem; align-items: center; gap: var(--cds-gap-sm); font-size: var(--cds-font-size-body); padding: 3px 0; }
+.lx-arow .lx-av { text-align: right; font-variant-numeric: tabular-nums; }
+.lx-atrack { position: relative; height: 12px; }
+.lx-atrack .lx-zero { position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: var(--cds-chart-axis); }
+.lx-atrack .lx-af { position: absolute; top: 0; height: 100%; border-radius: 3px; }
+.lx-foot { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.5; }
+[data-dash-source-state=empty] { color: transparent; }
+[data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+</style>
+
+<div class="lx">
+  <header class="lx-head" id="topo">
+    <div class="lx-toprow">
+      <h1 class="lx-title">Painel Brasil</h1>
+      <label class="lx-local"><span>Local</span>
+        <select aria-label="Escolher local"><option value="brasil">Brasil</option><option value="pira">Piracicaba / SP</option></select>
+      </label>
+    </div>
+    <p class="lx-take">Os principais números do país e de Piracicaba em 27/out/2026. Toque em um indicador para ver o que ele mede, se está bom ou ruim, o impacto no dia a dia e o histórico.</p>
+  </header>
+
+  <nav class="lx-tabs" role="tablist" aria-label="Seções">
+    <button role="tab" data-tab="geral" id="tab-geral">Panorama</button>
+    <button role="tab" data-tab="social" id="tab-social">Impacto social</button>
+    <button role="tab" data-tab="compra" id="tab-compra">Poder de compra</button>
+    <button role="tab" data-tab="amb" id="tab-amb">Amazônia e terras raras</button>
+    <button role="tab" data-tab="divida" id="tab-divida">Dívida pública</button>
+    <button role="tab" data-tab="senado" id="tab-senado">Congresso</button>
+    <button role="tab" data-tab="propostas" id="tab-propostas">Plano do governo</button>
+  </nav>
+
+  <section class="lx-page" id="geral" data-page="geral" data-grupo="brasil">
+    <div class="lx-grid lx-tiles" data-source="indicadores"></div>
+    <div class="lx-card lx-det" hidden></div>
+    <div class="lx-card lx-impact" id="impacto-brasil"><h2>Qual o impacto disso?</h2><p data-source="leituras" data-field="texto" data-where="id=brasil">—</p></div>
+  </section>
+
+  <section class="lx-page" id="social" data-page="social" data-grupo="social" hidden>
+    <div class="lx-grid lx-tiles" data-source="indicadores"></div>
+    <div class="lx-card lx-det" hidden></div>
+    <div class="lx-card lx-impact" id="impacto-social"><h2>Qual o impacto disso?</h2><p data-source="leituras" data-field="texto" data-where="id=social">—</p></div>
+    <div class="lx-card" id="card-politicas">
+      <h2>Políticas públicas em andamento</h2>
+      <p class="lx-note">Programas e leis federais com efeito direto sobre renda e trabalho</p>
+      <div class="lx-list lx-pol" data-source="politicas"></div>
+    </div>
+  </section>
+
+  <section class="lx-page" id="compra" data-page="compra" data-grupo="compra" hidden>
+    <div class="lx-grid lx-tiles" data-source="indicadores"></div>
+    <div class="lx-card lx-det" hidden></div>
+    <div class="lx-card lx-impact" id="impacto-compra"><h2>Qual o impacto disso?</h2><p data-source="leituras" data-field="texto" data-where="id=compra">—</p></div>
+    <div class="lx-card" id="card-alimentos">
+      <h2>Preços dos alimentos no mercado</h2>
+      <p class="lx-note">Variação de preço em setembro de 2026, por grupo · IBGE (IPCA)</p>
+      <div class="lx-alim" data-source="alimentos"></div>
+    </div>
+  </section>
+
+  <section class="lx-page" id="amb" data-page="amb" data-grupo="amb" hidden>
+    <div class="lx-grid lx-tiles" data-source="indicadores"></div>
+    <div class="lx-card lx-det" hidden></div>
+    <div class="lx-card lx-impact" id="impacto-amb"><h2>Qual o impacto disso?</h2><p data-source="leituras" data-field="texto" data-where="id=amb">—</p></div>
+    <div class="lx-card" id="card-regioes">
+      <h2>Desmatamento por estado</h2>
+      <p class="lx-note">km² desmatados de ago/2025 a jul/2026 e variação sobre o ano anterior · INPE (Prodes)</p>
+      <div class="lx-chips lx-bioma" role="group" aria-label="Escolher bioma" style="margin-bottom:var(--cds-gap-sm)"></div>
+      <div class="lx-bars lx-reg" data-source="regioes"></div>
+    </div>
+    <div class="lx-card" id="card-amb-acoes">
+      <h2>O que está sendo feito</h2>
+      <p class="lx-note">Medidas federais contra desmatamento e fogo</p>
+      <div class="lx-list lx-ambac" data-source="amb_acoes"></div>
+    </div>
+    <div class="lx-card" id="card-terras-raras">
+      <h2>Terras raras</h2>
+      <p class="lx-note">Minerais usados em ímãs de carros elétricos, turbinas eólicas e defesa · Conjur, ANM, USGS</p>
+      <div class="lx-list lx-tr" data-source="terras_raras"></div>
+    </div>
+  </section>
+
+  <section class="lx-page" id="divida" data-page="divida" hidden>
+    <div class="lx-card lx-impact" id="impacto-divida"><h2>Qual o impacto disso?</h2><p data-source="leituras" data-field="texto" data-where="id=divida">—</p></div>
+    <div class="lx-card" id="card-divida">
+      <h2>Dívida bruta do governo geral</h2>
+      <p class="lx-note">% do PIB · linha cheia: Banco Central · tracejado: projeções</p>
+      <div class="lx-chart lx-dchart" data-source="divida_serie divida_proj"></div>
+    </div>
+    <div class="lx-grid2">
+      <div class="lx-card" id="card-detentores">
+        <h2>Quem financia a dívida federal</h2>
+        <p class="lx-note">% da dívida interna (DPMFi) por detentor · ago/2026 · Tesouro Nacional</p>
+        <div class="lx-bars lx-det-bars" data-source="detentores"></div>
+      </div>
+      <div class="lx-card" id="card-indexadores">
+        <h2>A que a dívida está atrelada</h2>
+        <p class="lx-note">% da Dívida Pública Federal por tipo de remuneração · ago/2026 · Tesouro Nacional</p>
+        <div class="lx-bars lx-idx-bars" data-source="indexadores"></div>
+      </div>
+    </div>
+    <div class="lx-card" id="card-fatos">
+      <h2>Números para contexto</h2>
+      <p class="lx-note">Tamanho, custo, prazo e segurança de caixa</p>
+      <table class="lx-t lx-fatos" data-source="divida_fatos" data-row-key="id">
+        <thead><tr><th data-field="fato">O quê</th><th data-field="valor" class="num">Valor</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="lx-card" id="card-acoes">
+      <h2>O que está sendo feito</h2>
+      <p class="lx-note">Regras, leis e decisões que afetam a trajetória da dívida</p>
+      <div class="lx-list lx-acoes" data-source="divida_acoes"></div>
+    </div>
+  </section>
+
+  <section class="lx-page" id="senado" data-page="senado" hidden>
+    <div class="lx-card lx-impact" id="impacto-congresso"><h2>Qual o impacto disso?</h2><p data-source="leituras" data-field="texto" data-where="id=congresso">—</p></div>
+    <div class="lx-card" id="card-senado">
+      <h2>Pauta no Congresso</h2>
+      <p class="lx-note">PECs, orçamento, vetos e projetos em andamento · mais recentes primeiro</p>
+      <div class="lx-list lx-sen" data-source="senado"></div>
+    </div>
+  </section>
+
+  <section class="lx-page" id="pira" data-page="pira" data-grupo="pira" hidden>
+    <p class="lx-intro">Piracicaba / SP · dados do IBGE, Caged, Inep e TCE-SP. Alguns indicadores municipais só são atualizados a cada Censo.</p>
+    <div class="lx-grid lx-tiles" data-source="indicadores"></div>
+    <div class="lx-card lx-det" hidden></div>
+    <div class="lx-card lx-impact" id="impacto-pira"><h2>Qual o impacto disso?</h2><p data-source="leituras" data-field="texto" data-where="id=pira">—</p></div>
+    <div class="lx-card" id="card-pira-info">
+      <h2>Ficha da cidade</h2>
+      <p class="lx-note">Gestão, orçamento e outros dados</p>
+      <table class="lx-t lx-pinfo" data-source="pira_info" data-row-key="id">
+        <thead><tr><th data-field="item">Item</th><th data-field="valor" class="num">Valor</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="lx-page" id="propostas" data-page="propostas" hidden>
+    <div>
+      <p class="lx-intro" style="margin-bottom:var(--cds-gap-xs)">Propostas do plano de governo 2027–2030 do presidente reeleito, registrado no TSE, e onde cada uma está hoje. Deslize para os lados.</p>
+      <div class="lx-chips" role="group" aria-label="Filtrar por área"></div>
+    </div>
+    <div class="lx-board" data-source="propostas" id="kanban"></div>
+  </section>
+
+  <p class="lx-foot">Dados reunidos em 27/out/2026 de IBGE, Banco Central, Tesouro Nacional, FAO/ONU, B3, Conab, Dieese, INPE, Caged, Inep, TCE-SP e Agência Senado. A leitura favorável, atenção ou desfavorável e os textos de impacto são uma análise, não classificação oficial.</p>
+</div>
+
+<script>{
+window.lx = {};
+lx.n = (v, d) => Number(v).toLocaleString('pt-BR', { minimumFractionDigits: d, maximumFractionDigits: d });
+lx.fmt = (fmt, v) => {
+  switch (fmt) {
+    case 'pct2': return lx.n(v, 2) + '%';
+    case 'pct1': return lx.n(v, 1) + '%';
+    case 'brl2': return 'R$ ' + lx.n(v, 2);
+    case 'brl0': return 'R$ ' + lx.n(v, 0);
+    case 'pts': case 'num0': return lx.n(v, 0);
+    case 'dec1': return lx.n(v, 1);
+    case 'dec2': return lx.n(v, 2);
+    case 'dec3': return lx.n(v, 3);
+    default: return lx.n(v, 1);
+  }
+};
+lx.el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+lx.fail = (el) => { el.replaceChildren(lx.el('span', 'lx-empty', 'Falhou ao carregar')); };
+}</script>
+
+<script>{
+const tabs = [...document.querySelectorAll('.lx-tabs button')];
+const pages = [...document.querySelectorAll('.lx-page')];
+const nav = document.querySelector('.lx-tabs');
+const localSel = document.querySelector('.lx-local select');
+const title = document.querySelector('.lx-title');
+lx.show = (name) => {
+  const local = dash.params().local === 'pira' ? 'pira' : 'brasil';
+  if (local === 'pira') name = 'pira';
+  else if (name === 'pira' || !pages.some((p) => p.dataset.page === name)) name = 'geral';
+  nav.hidden = local === 'pira';
+  localSel.value = local;
+  title.textContent = local === 'pira' ? 'Painel Piracicaba' : 'Painel Brasil';
+  tabs.forEach((t) => t.setAttribute('aria-selected', String(t.dataset.tab === name)));
+  pages.forEach((p) => { p.hidden = p.dataset.page !== name; });
+  dash.setLink(name);
+};
+localSel.addEventListener('change', () => { dash.setParams({ local: localSel.value, ind: null }); lx.show(dash.params().tab || 'geral'); });
+tabs.forEach((t) => t.addEventListener('click', () => { dash.setParams({ tab: t.dataset.tab, ind: null }); lx.show(t.dataset.tab); }));
+const h0 = location.hash.slice(1);
+if (h0 === 'pira') dash.setParams({ local: 'pira' });
+else if (h0 && pages.some((p) => p.dataset.page === h0)) dash.setParams({ tab: h0 });
+lx.show(dash.params().tab || 'geral');
+dash.onData(() => {
+  const t = dash.params().local === 'pira' ? 'pira' : (dash.params().tab || 'geral');
+  const cur = pages.find((p) => !p.hidden);
+  if (!cur || cur.dataset.page !== t) lx.show(dash.params().tab || 'geral');
+});
+}</script>
+
+<script>{
+dash.onData(() => {
+  const L = dash.data('leituras');
+  document.querySelectorAll('.lx-impact p[data-where]').forEach((p) => {
+    const id = p.dataset.where.split('=')[1];
+    const r = L.status === 'ok' ? L.data.find((x) => x.id === id) : null;
+    p.textContent = r ? r.texto : '—';
+  });
+});
+
+document.querySelectorAll('.lx-tiles').forEach((g) => g.addEventListener('click', (e) => {
+  const b = e.target.closest('button[data-ind]');
+  if (!b) return;
+  const id = b.dataset.ind;
+  const next = dash.params().ind === id ? null : id;
+  const pg = b.closest('.lx-page');
+  dash.setParams({ ind: next });
+  if (next && pg) requestAnimationFrame(() => { const d = pg.querySelector('.lx-det'); if (d) d.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+}));
+document.addEventListener('click', (e) => { if (e.target.closest('.lx-det .lx-x')) dash.setParams({ ind: null }); });
+
+const mark = (el, field, id) => { el.dataset.source = 'indicadores'; el.dataset.field = field; el.dataset.where = 'id=' + id; return el; };
+
+lx.MAND = [
+  { nome: 'Lula 1', de: 2003, ate: 2006 },
+  { nome: 'Lula 2', de: 2007, ate: 2010 },
+  { nome: 'Dilma', de: 2011, ate: 2015 },
+  { nome: 'Temer', de: 2016, ate: 2018 },
+  { nome: 'Bolsonaro', de: 2019, ate: 2022 },
+  { nome: 'Lula 3', de: 2023, ate: 2026 },
+];
+lx.MAND_PIRA = [
+  { nome: 'Humberto de Campos', curto: 'Humberto', de: 1997, ate: 2000 },
+  { nome: 'José Machado', curto: 'Machado', de: 2001, ate: 2004 },
+  { nome: 'Barjas Negri 1', curto: 'Barjas 1', de: 2005, ate: 2008 },
+  { nome: 'Barjas Negri 2', curto: 'Barjas 2', de: 2009, ate: 2012 },
+  { nome: 'Gabriel Ferrato', curto: 'Ferrato', de: 2013, ate: 2016 },
+  { nome: 'Barjas Negri 3', curto: 'Barjas 3', de: 2017, ate: 2020 },
+  { nome: 'Luciano Almeida', curto: 'Luciano', de: 2021, ate: 2024 },
+  { nome: 'Helinho Zanatta', curto: 'Helinho', de: 2025, ate: 2028 },
+];
+dash.calc('mandatos', {
+  title: 'Indicadores por mandato',
+  description: 'Agrupa os anos do histórico por mandato: presidentes para os dados do Brasil (Lula 1 2003–06 a Lula 3 2023–26) e prefeitos para os de Piracicaba (Humberto de Campos 1997–2000 a Helinho Zanatta 2025–28). Calcula a média dos anos com dado e o valor do último ano.',
+  inputs: ['historico'],
+  fn: (historico) => {
+    const mand = [
+      { nome: 'Lula 1', de: 2003, ate: 2006 }, { nome: 'Lula 2', de: 2007, ate: 2010 },
+      { nome: 'Dilma', de: 2011, ate: 2015 }, { nome: 'Temer', de: 2016, ate: 2018 },
+      { nome: 'Bolsonaro', de: 2019, ate: 2022 }, { nome: 'Lula 3', de: 2023, ate: 2026 },
+    ];
+    const pira = [
+      { nome: 'Humberto de Campos', de: 1997, ate: 2000 }, { nome: 'José Machado', de: 2001, ate: 2004 },
+      { nome: 'Barjas Negri 1', de: 2005, ate: 2008 }, { nome: 'Barjas Negri 2', de: 2009, ate: 2012 },
+      { nome: 'Gabriel Ferrato', de: 2013, ate: 2016 }, { nome: 'Barjas Negri 3', de: 2017, ate: 2020 },
+      { nome: 'Luciano Almeida', de: 2021, ate: 2024 }, { nome: 'Helinho Zanatta', de: 2025, ate: 2028 },
+    ];
+    const out = [];
+    [...new Set(historico.map((h) => h.id))].forEach((id) => {
+      (id.startsWith('p_') ? pira : mand).forEach((m, i) => {
+        const rs = historico.filter((h) => h.id === id && h.ano >= m.de && h.ano <= m.ate).sort((a, b) => a.ano - b.ano);
+        if (!rs.length) return;
+        const last = rs[rs.length - 1];
+        out.push({ chave: id + '|' + m.nome, id, mandato: m.nome, ordem: i, periodo: m.de + '–' + m.ate, anos: rs.length,
+          media: rs.reduce((s, r) => s + r.valor, 0) / rs.length, ultimo: last.valor, ano_ultimo: last.ano, parcial: last.tipo !== 'anual' });
+      });
+    });
+    return out;
+  },
+});
+
+lx.histChart = (box, rows, r) => {
+  if (rows.length < 2) { box.style.minHeight = '0'; box.replaceChildren(lx.el('p', 'lx-note', 'Não há série histórica na fonte consultada.')); return; }
+  box.style.minHeight = '';
+  const W = Math.max(box.clientWidth, 260), H = 230, TOP = 26;
+  const svg = d3.create('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Histórico de ' + r.indicador + ' por mandato');
+  box.replaceChildren(svg.node());
+  const isBar = r.grafico === 'barra';
+  const vals = rows.flatMap((x) => x.meta != null ? [x.valor, x.meta + 1.5, x.meta - 1.5] : [x.valor]);
+  const ext = d3.extent(vals);
+  const fromZero = isBar || ext[0] < 0 || ext[0] < ext[1] * .5;
+  const lo = fromZero ? Math.min(0, ext[0]) : ext[0] - (ext[1] - ext[0]) * .2;
+  const y = d3.scaleLinear([lo, ext[1]], [H - 22, TOP + 6]).nice(4);
+  const tf = (v) => r.fmt === 'brl2' ? 'R$ ' + lx.n(v, 0) : r.fmt.startsWith('pct') ? lx.n(v, 0) + '%' : r.fmt === 'dec3' ? lx.n(v, 2) : Math.abs(v) >= 10000 ? lx.n(v / 1000, 0) + ' mil' : lx.n(v, Number.isInteger(v) ? 0 : 1);
+  const tks = y.ticks(4);
+  const probe = svg.append('text').attr('font-size', 11).text(tks.map(tf).reduce((a, b) => b.length > a.length ? b : a, ''));
+  const lw = probe.node().getComputedTextLength() + 8; probe.remove();
+  const y0 = d3.min(rows, (d) => d.ano), y1 = d3.max(rows, (d) => d.ano);
+  const x = d3.scaleLinear([y0 - .5, y1 + .5], [lw, W - 6]);
+  const unit = x(1) - x(0);
+  const isPira = r.grupo === 'pira';
+  const MD = isPira ? lx.MAND_PIRA : lx.MAND;
+  const ELEC = isPira ? [1996, 2000, 2004, 2008, 2012, 2016, 2020, 2024] : [2002, 2006, 2010, 2014, 2018, 2022, 2026];
+  // faixas por mandato
+  const g = svg.append('g');
+  MD.forEach((m, i) => {
+    const a = Math.max(m.de, y0) - .5, b = Math.min(m.ate, y1) + .5;
+    if (b <= a) return;
+    g.append('rect').attr('x', x(a)).attr('width', x(b) - x(a)).attr('y', TOP - 18).attr('height', H - 22 - TOP + 18)
+      .attr('fill', i % 2 ? 'var(--cds-chart-muted)' : 'transparent').attr('opacity', .12);
+    const wpx = x(b) - x(a);
+    const full = m.curto || m.nome;
+    const nm = wpx > full.length * 6 + 4 ? full : wpx > 30 ? full.replace('Bolsonaro', 'Bolso.').replace('Lula ', 'L').replace('Barjas ', 'B').replace('Humberto', 'Humb.').replace('Machado', 'Mach.').replace('Ferrato', 'Ferr.').replace('Luciano', 'Luc.').replace('Helinho', 'Hel.') : '';
+    if (nm) g.append('text').attr('x', (x(a) + x(b)) / 2).attr('y', TOP - 6).attr('text-anchor', 'middle').attr('font-size', 10).attr('fill', 'var(--color-fg-muted)').text(nm);
+  });
+  // marcos: eleições a cada 4 anos (troca de mandato) e impeachment
+  ELEC.forEach((e) => {
+    const xe = x(e + .5);
+    if (e + .5 <= y0 - .5 || e + .5 >= y1 + .5) return;
+    svg.append('line').attr('x1', xe).attr('x2', xe).attr('y1', TOP - 18).attr('y2', H - 22).attr('stroke', 'var(--cds-chart-reference)').attr('stroke-dasharray', '3 3');
+  });
+  if (!isPira && 2015.5 > y0 - .5 && 2015.5 < y1 + .5) svg.append('line').attr('x1', x(2015.5)).attr('x2', x(2015.5)).attr('y1', TOP - 18).attr('y2', H - 22).attr('stroke', 'var(--cds-chart-reference)').attr('stroke-dasharray', '1 3');
+  tks.forEach((t) => {
+    svg.append('line').attr('x1', lw).attr('x2', W - 6).attr('y1', y(t)).attr('y2', y(t)).attr('stroke', t === 0 ? 'var(--cds-chart-axis)' : 'var(--cds-chart-grid)');
+    svg.append('text').attr('x', lw - 6).attr('y', y(t) + 4).attr('text-anchor', 'end').attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text(tf(t));
+  });
+  // eixo: anos de eleição (todos) em destaque
+  const elec = ELEC.filter((e) => e >= y0 && e <= y1);
+  const labs = elec.length ? elec : [y0, y1];
+  const minGap = 34;
+  let lastX = -1e9;
+  labs.forEach((e) => {
+    const xe = x(e);
+    if (xe - lastX < minGap) return;
+    lastX = xe;
+    svg.append('text').attr('x', xe).attr('y', H - 6).attr('text-anchor', 'middle').attr('font-size', 11).attr('font-weight', 600).attr('fill', 'var(--color-fg)').text(e);
+  });
+  rows.forEach((d) => svg.append('line').attr('x1', x(d.ano)).attr('x2', x(d.ano)).attr('y1', H - 22).attr('y2', H - 18).attr('stroke', 'var(--cds-chart-axis)'));
+  if (rows.some((d) => d.meta != null)) {
+    const area = d3.area().x((d) => x(d.ano)).y0((d) => y(d.meta - 1.5)).y1((d) => y(d.meta + 1.5)).curve(d3.curveStepAfter);
+    svg.append('path').attr('d', area(rows)).attr('fill', 'var(--cds-chart-muted)').attr('opacity', .25);
+  }
+  const C = dash.colors[0];
+  let marks;
+  if (isBar) {
+    const bw = Math.min(28, unit * .6);
+    marks = svg.append('g').selectAll('rect').data(rows).join('rect')
+      .attr('x', (d) => x(d.ano) - bw / 2).attr('width', bw).attr('rx', 3)
+      .attr('y', (d) => y(Math.max(0, d.valor))).attr('height', (d) => Math.max(1, Math.abs(y(d.valor) - y(0))))
+      .attr('fill', (d) => d.valor < 0 ? 'var(--cds-chart-status-critical)' : C).attr('opacity', (d) => d.tipo === 'anual' ? 1 : .45);
+  } else {
+    const done = rows.filter((d) => d.tipo === 'anual');
+    const line = d3.line().x((d) => x(d.ano)).y((d) => y(d.valor));
+    svg.append('path').attr('d', line(done)).attr('fill', 'none').attr('stroke', C).attr('stroke-width', 2).attr('stroke-linecap', 'round').attr('stroke-linejoin', 'round');
+    const tail = rows.slice(-2);
+    if (tail.length === 2 && tail[1].tipo !== 'anual') svg.append('path').attr('d', line(tail)).attr('fill', 'none').attr('stroke', C).attr('stroke-width', 2).attr('stroke-dasharray', '4 4');
+    marks = svg.append('g').selectAll('circle').data(rows).join('circle').attr('cx', (d) => x(d.ano)).attr('cy', (d) => y(d.valor)).attr('r', 3)
+      .attr('fill', (d) => d.tipo === 'anual' ? C : 'var(--color-panel)').attr('stroke', C).attr('stroke-width', 1.5);
+  }
+  const tip = lx.el('div', 'lx-tip'); tip.hidden = true; box.append(tip);
+  const base = isBar ? 'none' : C;
+  const quem = (ano) => (MD.find((m) => ano >= m.de && ano <= m.ate) || {}).nome;
+  const show = (ev) => {
+    const [mx] = d3.pointer(ev, svg.node());
+    const sx = mx * W / svg.node().getBoundingClientRect().width;
+    const d = rows[d3.leastIndex(rows, (a) => Math.abs(x(a.ano) - sx))];
+    marks.attr('stroke', (a) => a === d ? 'var(--color-fg)' : base);
+    const q = quem(d.ano);
+    tip.replaceChildren(lx.el('div', 'lx-tipd', (d.rotulo || d.ano) + (q ? ' · ' + q : '') + (d.tipo === 'anual' ? '' : ' · ' + d.tipo)), lx.el('div', null, lx.fmt(r.fmt, d.valor) + (d.meta != null ? ' · meta ' + lx.n(d.meta, 2) + '%' : '')));
+    tip.hidden = false;
+    const bw = box.clientWidth, px = x(d.ano) * bw / W;
+    tip.style.left = Math.min(Math.max(px - tip.offsetWidth / 2, 0), bw - tip.offsetWidth) + 'px';
+    tip.style.top = Math.max(y(Math.max(d.valor, 0)) * bw / W - tip.offsetHeight - 10, 0) + 'px';
+  };
+  svg.on('pointermove', show).on('pointerdown', show).on('pointerleave', () => { tip.hidden = true; marks.attr('stroke', base); });
+};
+
+lx.mandTable = (wrap, r) => {
+  const m = dash.data('mandatos');
+  if (m.status !== 'ok') { wrap.replaceChildren(); return; }
+  const rows = m.data.filter((x) => x.id === r.id).sort((a, b) => a.ordem - b.ordem);
+  if (rows.length < 2) { wrap.replaceChildren(); return; }
+  const t = lx.el('table', 'lx-t lx-mand');
+  t.dataset.source = 'mandatos'; t.dataset.rowKey = 'chave';
+  const hd = lx.el('tr');
+  [['mandato', 'Mandato', ''], ['media', 'Média', 'num'], ['ultimo', 'Último ano', 'num']].forEach(([f, l, c]) => { const th = lx.el('th', c, l); th.dataset.field = f; hd.append(th); });
+  const th = lx.el('thead'); th.append(hd);
+  const tb = lx.el('tbody');
+  rows.forEach((x) => {
+    const tr = lx.el('tr'); tr.dataset.key = x.chave;
+    const a = lx.el('td', null, x.mandato); a.append(lx.el('div', 'lx-meta', x.periodo + ' · ' + x.anos + (x.anos === 1 ? ' ano' : ' anos') + ' com dado'));
+    tr.append(a, lx.el('td', 'num', lx.fmt(r.fmt, x.media)), lx.el('td', 'num', lx.fmt(r.fmt, x.ultimo) + ' (' + x.ano_ultimo + (x.parcial ? '*' : '') + ')'));
+    tb.append(tr);
+  });
+  t.append(th, tb);
+  const pira = r.grupo === 'pira';
+  wrap.replaceChildren(lx.el('h3', null, pira ? 'Agrupado por prefeito' : 'Agrupado por presidente'), t, lx.el('p', 'lx-note', pira
+    ? 'Média dos anos com dado em cada mandato. Linhas tracejadas no gráfico: troca de prefeito após as eleições municipais, a cada 4 anos. * dado parcial ou estimativa.'
+    : 'Média dos anos com dado em cada mandato. Linhas tracejadas no gráfico: troca de mandato após as eleições, a cada 4 anos; pontilhada: impeachment em 2016. * dado parcial ou projeção.'));
+};
+
+dash.onData(() => {
+  const ind = dash.data('indicadores'), hist = dash.data('historico'); dash.data('mandatos');
+  const sel = dash.params().ind || '';
+  document.querySelectorAll('.lx-page[data-grupo]').forEach((page) => {
+    const grupo = page.dataset.grupo;
+    const tiles = page.querySelector('.lx-tiles');
+    const det = page.querySelector('.lx-det');
+    if (ind.status !== 'ok') { tiles.replaceChildren(); det.hidden = true; if (ind.status === 'error') lx.fail(tiles); return; }
+    const rows = ind.data.filter((r) => r.grupo === grupo);
+    tiles.replaceChildren(...rows.map((r) => {
+      const b = lx.el('button', 'lx-card lx-tile'); b.dataset.ind = r.id; b.id = 'ind-' + r.id;
+      b.setAttribute('aria-pressed', String(r.id === sel));
+      b.append(lx.el('span', 'lx-lbl', r.indicador),
+        mark(lx.el('span', 'lx-big', lx.fmt(r.fmt, r.valor)), 'valor', r.id),
+        mark(lx.el('span', 'lx-ref', r.referencia), 'referencia', r.id),
+        mark(lx.el('span', 'lx-tom t-' + r.tom, r.tom), 'tom', r.id));
+      return b;
+    }));
+    const r = rows.find((x) => x.id === sel);
+    if (!r || page.hidden) { det.hidden = true; det.replaceChildren(); return; }
+    det.hidden = false;
+    const head = lx.el('div', 'lx-deth');
+    const ht = lx.el('div'); ht.append(mark(lx.el('h2', null, r.indicador), 'indicador', r.id), mark(lx.el('p', 'lx-note', r.fonte), 'fonte', r.id));
+    const x = lx.el('button', 'lx-x', '×'); x.setAttribute('aria-label', 'Fechar');
+    head.append(ht, x);
+    const now = lx.el('div', 'lx-dnow');
+    now.append(mark(lx.el('span', 'lx-big', lx.fmt(r.fmt, r.valor)), 'valor', r.id), mark(lx.el('span', 'lx-tom t-' + r.tom, r.tom), 'tom', r.id), mark(lx.el('span', 'lx-note', r.referencia), 'referencia', r.id));
+    const box = lx.el('div', 'lx-chart'); box.dataset.source = 'historico';
+    const imp = lx.el('div', 'lx-dimp'); imp.append(lx.el('h3', null, 'Impacto no dia a dia'), mark(lx.el('p', null, r.impacto), 'impacto', r.id));
+    det.replaceChildren(head, now,
+      lx.el('h3', null, 'O que é'), mark(lx.el('p', null, r.o_que_e), 'o_que_e', r.id),
+      lx.el('h3', null, 'Quando é bom ou ruim'), mark(lx.el('p', null, r.como_ler), 'como_ler', r.id),
+      lx.el('h3', null, 'Como está agora'), mark(lx.el('p', null, r.leitura), 'leitura', r.id),
+      imp,
+      lx.el('h3', null, 'Histórico'), mark(lx.el('p', 'lx-note', r.nota_hist), 'nota_hist', r.id), box);
+    const mw = lx.el('div');
+    det.append(mw);
+    if (hist.status === 'ok') lx.histChart(box, hist.data.filter((h) => h.id === r.id).sort((a, b) => a.ano - b.ano), r);
+    lx.mandTable(mw, r);
+  });
+});
+}</script>
+
+<script>{
+dash.onData(() => {
+  const p = dash.data('politicas');
+  const box = document.querySelector('.lx-pol');
+  if (p.status !== 'ok') { box.replaceChildren(); if (p.status === 'error') lx.fail(box); return; }
+  box.replaceChildren(...p.data.map((r) => {
+    const it = lx.el('div', 'lx-s'); it.id = 'pol-' + r.id;
+    const h = lx.el('div', 'lx-sh'); h.append(lx.el('strong', null, r.nome), lx.el('span', 'lx-badge t-Favorável', r.situacao));
+    it.append(h, lx.el('div', 'lx-meta', r.numero), lx.el('p', null, r.detalhe), lx.el('div', 'lx-meta', 'Fonte: ' + r.fonte));
+    return it;
+  }));
+});
+
+dash.onData(() => {
+  const page = document.getElementById('divida');
+  if (page.hidden) return;
+  const s = dash.data('divida_serie'), pj = dash.data('divida_proj');
+  const box = document.querySelector('.lx-dchart');
+  if (s.status !== 'ok' || pj.status !== 'ok') { box.replaceChildren(); if (s.status === 'error' || pj.status === 'error') lx.fail(box); return; }
+  const W = Math.max(box.clientWidth, 260), H = 220;
+  const real = s.data.map((r) => ({ t: new Date(r.mes + '-15T00:00:00Z'), v: r.dbgg, lbl: r.mes.split('-').reverse().join('/'), src: 'Banco Central' }));
+  const last = real[real.length - 1];
+  const proj = [last, ...pj.data.map((r) => ({ t: new Date(Date.UTC(r.ano, 11, 31)), v: r.valor, lbl: 'fim de ' + r.ano, src: r.fonte }))];
+  const all = real.concat(proj.slice(1));
+  const svg = d3.create('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Dívida bruta em % do PIB');
+  const y = d3.scaleLinear([75, 96], [H - 24, 10]);
+  box.replaceChildren(svg.node());
+  const probe = svg.append('text').attr('font-size', 11).text('95%');
+  const lw = probe.node().getComputedTextLength() + 8; probe.remove();
+  const x = d3.scaleUtc(d3.extent(all, (d) => d.t), [lw, W - 40]);
+  y.ticks(4).forEach((t) => {
+    svg.append('line').attr('x1', lw).attr('x2', W - 40).attr('y1', y(t)).attr('y2', y(t)).attr('stroke', 'var(--cds-chart-grid)');
+    svg.append('text').attr('x', lw - 6).attr('y', y(t) + 4).attr('text-anchor', 'end').attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text(t + '%');
+  });
+  [2026, 2028, 2030].forEach((yr) => { const tx = x(new Date(Date.UTC(yr, 0, 1))); if (tx > lw + 10 && tx < W - 40) svg.append('text').attr('x', tx).attr('y', H - 6).attr('text-anchor', 'middle').attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text(yr); });
+  svg.append('line').attr('x1', lw).attr('x2', W - 40).attr('y1', y(87.6)).attr('y2', y(87.6)).attr('stroke', 'var(--cds-chart-reference)').attr('stroke-dasharray', '2 3');
+  svg.append('text').attr('x', lw + 4).attr('y', y(87.6) - 4).attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text('pico de 2020: 87,6%');
+  const line = d3.line().x((d) => x(d.t)).y((d) => y(d.v));
+  svg.append('path').attr('d', line(real)).attr('fill', 'none').attr('stroke', dash.colors[0]).attr('stroke-width', 2).attr('stroke-linecap', 'round');
+  svg.append('path').attr('d', line(proj)).attr('fill', 'none').attr('stroke', dash.colors[0]).attr('stroke-width', 2).attr('stroke-dasharray', '5 4').attr('opacity', .7);
+  const dots = svg.append('g').selectAll('circle').data(all).join('circle').attr('cx', (d) => x(d.t)).attr('cy', (d) => y(d.v)).attr('r', 3.5).attr('fill', 'var(--color-panel)').attr('stroke', dash.colors[0]).attr('stroke-width', 2);
+  const end = all[all.length - 1];
+  svg.append('text').attr('x', x(end.t) + 6).attr('y', y(end.v) + 4).attr('font-size', 11).attr('fill', 'var(--color-fg)').text(lx.n(end.v, 1) + '%');
+  const tip = lx.el('div', 'lx-tip'); tip.hidden = true; box.append(tip);
+  const show = (ev) => {
+    const [mx] = d3.pointer(ev, svg.node());
+    const sx = mx * W / svg.node().getBoundingClientRect().width;
+    const d = all[d3.leastIndex(all, (a) => Math.abs(x(a.t) - sx))];
+    dots.attr('fill', (a) => a === d ? dash.colors[0] : 'var(--color-panel)');
+    tip.replaceChildren(lx.el('div', 'lx-tipd', d.lbl + ' · ' + d.src), lx.el('div', null, lx.n(d.v, 1) + '% do PIB'));
+    tip.hidden = false;
+    const bw = box.clientWidth, px = x(d.t) * bw / W;
+    tip.style.left = Math.min(Math.max(px - tip.offsetWidth / 2, 0), bw - tip.offsetWidth) + 'px';
+    tip.style.top = Math.max(y(d.v) * bw / W - tip.offsetHeight - 10, 0) + 'px';
+  };
+  svg.on('pointermove', show).on('pointerdown', show).on('pointerleave', () => { tip.hidden = true; dots.attr('fill', 'var(--color-panel)'); });
+});
+
+lx.bars = (box, d, extra) => {
+  if (d.status !== 'ok') { box.replaceChildren(); if (d.status === 'error') lx.fail(box); return; }
+  const max = d3.max(d.data, (r) => r.pct) || 1;
+  box.replaceChildren(...d.data.map((r, i) => {
+    const w = lx.el('div', 'lx-bar');
+    const l = lx.el('div', 'lx-bl'); l.append(lx.el('span', null, r.item), lx.el('span', null, lx.n(r.pct, 1) + '%'));
+    const tr = lx.el('div', 'lx-track'); const fi = lx.el('div', 'lx-fill'); fi.style.width = (r.pct / max * 100) + '%'; fi.style.background = i === 0 ? dash.colors[0] : 'var(--cds-chart-muted)'; tr.append(fi);
+    w.append(l, tr, lx.el('div', 'lx-src', extra(r)));
+    return w;
+  }));
+};
+dash.onData(() => {
+  lx.bars(document.querySelector('.lx-det-bars'), dash.data('detentores'), (r) => (r.estoque ? 'R$ ' + lx.n(r.estoque / 1000, 2) + ' tri · ' : '') + r.desc);
+  lx.bars(document.querySelector('.lx-idx-bars'), dash.data('indexadores'), (r) => r.desc);
+  const f = dash.data('divida_fatos');
+  const tb = document.querySelector('.lx-fatos tbody');
+  tb.replaceChildren(...(f.status === 'ok' ? f.data : []).map((r) => {
+    const tr = lx.el('tr'); tr.dataset.key = r.id;
+    const a = lx.el('td', null, r.fato); a.append(lx.el('div', 'lx-meta', r.ref));
+    tr.append(a, lx.el('td', 'num', r.valor)); return tr;
+  }));
+  const ac = dash.data('divida_acoes');
+  const box = document.querySelector('.lx-acoes');
+  if (ac.status !== 'ok') { box.replaceChildren(); if (ac.status === 'error') lx.fail(box); return; }
+  const C = { 'Em vigor': 't-Favorável', 'Aprovado': 't-Favorável', 'Aprovado no Senado': 't-Atenção', 'Em tramitação': 't-Atenção', 'Em andamento': 't-Atenção', 'Em aberto': 't-Desfavorável' };
+  box.replaceChildren(...ac.data.map((r) => {
+    const it = lx.el('div', 'lx-s'); it.id = 'acao-' + r.id;
+    const h = lx.el('div', 'lx-sh'); h.append(lx.el('strong', null, r.acao), lx.el('span', 'lx-badge ' + (C[r.status] || ''), r.status));
+    it.append(h, lx.el('p', null, r.detalhe), lx.el('div', 'lx-meta', 'Fonte: ' + r.fonte));
+    return it;
+  }));
+});
+
+dash.onData(() => {
+  const f = dash.data('pira_info');
+  const tb = document.querySelector('.lx-pinfo tbody');
+  tb.replaceChildren(...(f.status === 'ok' ? f.data : []).map((r) => {
+    const tr = lx.el('tr'); tr.dataset.key = r.id;
+    const a = lx.el('td', null, r.item); a.append(lx.el('div', 'lx-meta', r.ref));
+    tr.append(a, lx.el('td', 'num', r.valor)); return tr;
+  }));
+});
+
+const CORS = { 'Promulgada': 't-Favorável', 'Aprovado na Câmara': 't-Favorável', 'Aguarda sanção': 't-Favorável', 'Trancando a pauta': 't-Desfavorável', 'Parado na Câmara': 't-Desfavorável' };
+dash.onData(() => {
+  const s = dash.data('senado');
+  const box = document.querySelector('.lx-sen');
+  if (s.status !== 'ok') { box.replaceChildren(); if (s.status === 'error') lx.fail(box); return; }
+  const rows = [...s.data].sort((a, b) => a.data < b.data ? 1 : -1);
+  box.replaceChildren(...rows.map((r) => {
+    const it = lx.el('div', 'lx-s'); it.id = 'sen-' + r.id;
+    const h = lx.el('div', 'lx-sh'); h.append(lx.el('strong', null, r.materia), lx.el('span', 'lx-badge ' + (CORS[r.situacao] || 't-Atenção'), r.situacao));
+    const [yy, mm, dd] = r.data.split('-');
+    it.append(h, lx.el('p', null, r.resumo), lx.el('div', 'lx-meta', r.tipo + ' · atualizado em ' + `${dd}/${mm}/${yy}`));
+    return it;
+  }));
+});
+}</script>
+
+<script>{
+dash.calc('status_contagem', {
+  title: 'Propostas por status',
+  description: 'Quantas propostas há em cada coluna do quadro.',
+  inputs: ['propostas'],
+  fn: (propostas) => {
+    const m = new Map();
+    propostas.forEach((p) => m.set(p.status, (m.get(p.status) || 0) + 1));
+    return [...m].map(([status, n]) => ({ status, n }));
+  },
+});
+const ORDEM = ['Proposta', 'Em tramitação', 'Travada', 'Aprovada', 'Em execução'];
+const COR = { 'Proposta': 'var(--color-fg-muted)', 'Em tramitação': 'var(--color-warn)', 'Travada': 'var(--color-bad)', 'Aprovada': 'var(--color-ok)', 'Em execução': 'var(--color-fg)' };
+const chips = document.querySelector('.lx-chips');
+chips.addEventListener('click', (e) => { const b = e.target.closest('button[data-area]'); if (b) dash.setParams({ area: b.dataset.area }); });
+const toggleProp = (k) => { if (k) dash.setParams({ prop: dash.params().prop === k.dataset.prop ? null : k.dataset.prop }); };
+document.getElementById('kanban').addEventListener('click', (e) => toggleProp(e.target.closest('[data-prop]')));
+document.getElementById('kanban').addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleProp(e.target.closest('[data-prop]')); } });
+dash.onData(() => {
+  const p = dash.data('propostas'), c = dash.data('status_contagem');
+  const board = document.getElementById('kanban');
+  const area = dash.params().area || 'todas';
+  if (p.status !== 'ok') { chips.replaceChildren(); board.replaceChildren(); if (p.status === 'error') lx.fail(board); return; }
+  const areas = ['todas', ...[...new Set(p.data.map((x) => x.area))].sort((a, b) => a.localeCompare(b, 'pt'))];
+  chips.replaceChildren(...areas.map((a) => { const b = lx.el('button', null, a === 'todas' ? 'Todas as áreas' : a); b.dataset.area = a; b.setAttribute('aria-pressed', String(a === area)); return b; }));
+  const counts = c.status === 'ok' ? c.data : [];
+  board.replaceChildren(...ORDEM.map((st) => {
+    const col = lx.el('div', 'lx-col'); col.id = 'col-' + st.replace(/\s+/g, '-').toLowerCase();
+    const hd = lx.el('div', 'lx-colh');
+    const nm = lx.el('span'); const dot = lx.el('span', 'lx-dot'); dot.style.background = COR[st]; nm.append(dot, st);
+    const cr = counts.find((x) => x.status === st);
+    const n = lx.el('span', 'lx-n', cr ? String(cr.n) : '—'); n.dataset.source = 'status_contagem'; n.dataset.field = 'n'; n.dataset.where = 'status=' + st;
+    hd.append(nm, n); col.append(hd);
+    const itens = p.data.filter((x) => x.status === st && (area === 'todas' || x.area === area));
+    if (!itens.length) col.append(lx.el('div', 'lx-empty', 'Nada nesta área'));
+    itens.forEach((x) => {
+      const open = dash.params().prop === x.id;
+      const k = lx.el('article', 'lx-k' + (open ? ' lx-open' : '')); k.id = 'prop-' + x.id; k.dataset.prop = x.id;
+      k.tabIndex = 0; k.setAttribute('role', 'button'); k.setAttribute('aria-expanded', String(open));
+      k.append(lx.el('span', 'lx-tag', x.area), lx.el('strong', null, x.titulo), lx.el('p', null, x.detalhe));
+      if (open) {
+        const d = lx.el('div', 'lx-kdesc');
+        d.append(lx.el('h4', null, 'O que o plano propõe'), lx.el('p', null, x.descricao));
+        k.append(d);
+      }
+      k.append(lx.el('p', 'lx-kfoot', 'Depende de: ' + x.depende + ' · ' + (open ? 'toque para fechar' : 'toque para ver a proposta')));
+      col.append(k);
+    });
+    return col;
+  }));
+});
+}</script>
+
+<script>{
+// alimentos
+dash.onData(() => {
+  const a = dash.data('alimentos');
+  const box = document.querySelector('.lx-alim');
+  if (a.status !== 'ok') { box.replaceChildren(); if (a.status === 'error') lx.fail(box); return; }
+  const max = d3.max(a.data, (r) => Math.abs(r.var)) || 1;
+  const grupos = [...new Set(a.data.map((r) => r.grupo))];
+  box.replaceChildren(...grupos.map((g) => {
+    const w = lx.el('div', 'lx-agrp'); w.append(lx.el('h3', null, g));
+    a.data.filter((r) => r.grupo === g).sort((x, y) => y.var - x.var).forEach((r) => {
+      const row = lx.el('div', 'lx-arow');
+      const tr = lx.el('div', 'lx-atrack'); tr.append(lx.el('div', 'lx-zero'));
+      const f = lx.el('div', 'lx-af'); const wd = Math.abs(r.var) / max * 50;
+      f.style.width = wd + '%'; f.style.left = r.var >= 0 ? '50%' : (50 - wd) + '%';
+      f.style.background = r.var >= 0 ? 'var(--cds-chart-status-critical)' : dash.colors[0];
+      tr.append(f);
+      row.append(lx.el('span', null, r.item), tr, lx.el('span', 'lx-av ' + (r.var >= 0 ? 't-Desfavorável' : 't-Favorável'), (r.var > 0 ? '+' : '') + lx.n(r.var, 2) + '%'));
+      w.append(row);
+    });
+    return w;
+  }), lx.el('p', 'lx-note', 'Vermelho: ficou mais caro · azul: ficou mais barato. Arroz e feijão tiveram safras menores em 2025/26 (−13,2% e −3,6%), o que pressiona os preços.'));
+});
+
+// regiões
+const bio = document.querySelector('.lx-bioma');
+bio.addEventListener('click', (e) => { const b = e.target.closest('button[data-b]'); if (b) dash.setParams({ bioma: b.dataset.b }); });
+dash.onData(() => {
+  const d = dash.data('regioes');
+  const box = document.querySelector('.lx-reg');
+  if (d.status !== 'ok') { box.replaceChildren(); bio.replaceChildren(); if (d.status === 'error') lx.fail(box); return; }
+  const cur = dash.params().bioma || 'Amazônia';
+  bio.replaceChildren(...['Amazônia', 'Cerrado'].map((b) => { const x = lx.el('button', null, b); x.dataset.b = b; x.setAttribute('aria-pressed', String(b === cur)); return x; }));
+  const rows = d.data.filter((r) => r.bioma === cur).sort((a, b) => b.km2 - a.km2);
+  const max = d3.max(rows, (r) => r.km2) || 1;
+  box.replaceChildren(...rows.map((r, i) => {
+    const w = lx.el('div', 'lx-bar');
+    const l = lx.el('div', 'lx-bl'); l.append(lx.el('span', null, r.uf), lx.el('span', null, lx.n(r.km2, 0) + ' km²'));
+    const tr = lx.el('div', 'lx-track'); const fi = lx.el('div', 'lx-fill'); fi.style.width = (r.km2 / max * 100) + '%'; fi.style.background = r.var > 0 ? 'var(--cds-chart-status-critical)' : (i === 0 ? dash.colors[0] : 'var(--cds-chart-muted)'); tr.append(fi);
+    w.append(l, tr, lx.el('div', 'lx-src ' + (r.var > 0 ? 't-Desfavorável' : 't-Favorável'), (r.var > 0 ? '+' : '') + lx.n(r.var, 1) + '% sobre o ano anterior'));
+    return w;
+  }));
+});
+
+// ações ambientais e terras raras
+dash.onData(() => {
+  const ac = dash.data('amb_acoes');
+  const box = document.querySelector('.lx-ambac');
+  const C = { 'Em vigor': 't-Favorável', 'Em andamento': 't-Atenção', 'Em aberto': 't-Desfavorável' };
+  if (ac.status === 'ok') box.replaceChildren(...ac.data.map((r) => {
+    const it = lx.el('div', 'lx-s'); it.id = 'amb-' + r.id;
+    const h = lx.el('div', 'lx-sh'); h.append(lx.el('strong', null, r.acao), lx.el('span', 'lx-badge ' + (C[r.status] || ''), r.status));
+    it.append(h, lx.el('p', null, r.detalhe), lx.el('div', 'lx-meta', 'Fonte: ' + r.fonte));
+    return it;
+  })); else { box.replaceChildren(); if (ac.status === 'error') lx.fail(box); }
+  const t = dash.data('terras_raras');
+  const tb = document.querySelector('.lx-tr');
+  if (t.status === 'ok') tb.replaceChildren(...t.data.map((r) => {
+    const it = lx.el('div', 'lx-s'); it.id = 'tr-' + r.id;
+    const h = lx.el('div', 'lx-sh'); h.append(lx.el('strong', null, r.item), lx.el('span', 'lx-badge', r.valor));
+    it.append(h, lx.el('p', null, r.detalhe));
+    return it;
+  })); else { tb.replaceChildren(); if (t.status === 'error') lx.fail(tb); }
+});
+}</script>
+
+</div>
+</body>
+</html>

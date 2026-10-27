@@ -1,0 +1,50 @@
+[
+ {
+  "id": "bf",
+  "nome": "Bolsa Família",
+  "numero": "19,3 mi de famílias",
+  "detalhe": "Piso subiu de R$ 600 para R$ 691 e o valor médio para R$ 777 a partir de outubro de 2026, primeiro reajuste geral desde 2022. Orçamento de R$ 158,6 bi em 2026.",
+  "fonte": "MDS, via O Povo",
+  "situacao": "Em vigor"
+ },
+ {
+  "id": "ir",
+  "nome": "Isenção do IR até R$ 5 mil",
+  "numero": "Até R$ 5 mil/mês",
+  "detalhe": "Quem ganha até R$ 5 mil por mês fica isento, com desconto gradual até R$ 7,5 mil. A perda de arrecadação é compensada por um imposto mínimo de até 10% para quem ganha acima de R$ 50 mil por mês.",
+  "fonte": "Receita Federal / Congresso",
+  "situacao": "Em vigor desde 2026"
+ },
+ {
+  "id": "6x1",
+  "nome": "Fim da escala 6x1",
+  "numero": "40h semanais",
+  "detalhe": "Emenda constitucional promulgada em 16/out/2026 reduz a jornada de 44h para 40h, com dois dias de descanso e sem redução de salário.",
+  "fonte": "Agência Brasil",
+  "situacao": "Promulgada"
+ },
+ {
+  "id": "sm",
+  "nome": "Valorização do salário mínimo",
+  "numero": "Ganho real até 2,5%",
+  "detalhe": "Reajuste pela inflação mais o crescimento do PIB de dois anos antes, com ganho real limitado a 2,5% ao ano. A LDO 2027 prevê ao menos R$ 1.717.",
+  "fonte": "PLDO 2027",
+  "situacao": "Em vigor"
+ },
+ {
+  "id": "pdm",
+  "nome": "Pé-de-Meia",
+  "numero": "Ensino médio",
+  "detalhe": "Poupança paga a estudantes de baixa renda do ensino médio público para reduzir a evasão escolar.",
+  "fonte": "MEC",
+  "situacao": "Em vigor"
+ },
+ {
+  "id": "saude",
+  "nome": "Agora Tem Especialistas e Farmácia Popular",
+  "numero": "SUS",
+  "detalhe": "Programas para reduzir filas de consultas e exames especializados e ampliar remédios gratuitos.",
+  "fonte": "Ministério da Saúde",
+  "situacao": "Em vigor"
+ }
+]
