@@ -613,7 +613,7 @@
  {
   "id": "dolar",
   "ano": 2026,
-  "valor": 5.35,
+  "valor": 5.34,
   "tipo": "parcial"
  },
  {
@@ -715,7 +715,7 @@
  {
   "id": "ibov",
   "ano": 2026,
-  "valor": 175710,
+  "valor": 171006,
   "tipo": "parcial"
  },
  {
