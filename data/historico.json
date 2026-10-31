@@ -409,7 +409,7 @@
  {
   "id": "desemprego",
   "ano": 2026,
-  "valor": 5.3,
+  "valor": 5.2,
   "tipo": "parcial"
  },
  {
@@ -613,7 +613,7 @@
  {
   "id": "dolar",
   "ano": 2026,
-  "valor": 5.39,
+  "valor": 5.45,
   "tipo": "parcial"
  },
  {
@@ -715,7 +715,7 @@
  {
   "id": "ibov",
   "ano": 2026,
-  "valor": 169186,
+  "valor": 167922,
   "tipo": "parcial"
  },
  {
