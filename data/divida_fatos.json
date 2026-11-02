@@ -2,8 +2,8 @@
  {
   "id": "dpf",
   "fato": "Dívida Pública Federal (só União)",
-  "valor": "R$ 9,29 tri",
-  "ref": "Ago/2026 · Tesouro Nacional"
+  "valor": "R$ 9,38 tri",
+  "ref": "Set/2026 · Tesouro Nacional"
  },
  {
   "id": "valor",
@@ -14,26 +14,26 @@
  {
   "id": "custo",
   "fato": "Custo médio da dívida em 12 meses",
-  "valor": "12,59% a.a.",
-  "ref": "Ago/2026 · Tesouro Nacional"
+  "valor": "12,63% a.a.",
+  "ref": "Set/2026 · Tesouro Nacional"
  },
  {
   "id": "prazo",
   "fato": "Prazo médio até vencer",
   "valor": "4,1 anos",
-  "ref": "Ago/2026 · Tesouro Nacional"
+  "ref": "Set/2026 · Tesouro Nacional"
  },
  {
   "id": "vence",
   "fato": "Parte que vence em 12 meses",
-  "valor": "16,4%",
-  "ref": "Ago/2026 · Tesouro Nacional"
+  "valor": "19,95%",
+  "ref": "Set/2026 · Tesouro Nacional"
  },
  {
   "id": "colchao",
   "fato": "Colchão de caixa para pagar vencimentos",
-  "valor": "R$ 1,2 tri (7,2 meses)",
-  "ref": "Ago/2026 · Tesouro Nacional"
+  "valor": "R$ 1,27 tri (7,7 meses)",
+  "ref": "Set/2026 · Tesouro Nacional"
  },
  {
   "id": "pico",
