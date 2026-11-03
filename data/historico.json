@@ -216,7 +216,7 @@
  {
   "id": "ipca",
   "ano": 2026,
-  "valor": 5.19,
+  "valor": 5.22,
   "tipo": "projeção",
   "meta": 3.0
  },
@@ -319,7 +319,7 @@
  {
   "id": "pib",
   "ano": 2026,
-  "valor": 1.8,
+  "valor": 1.76,
   "tipo": "projeção"
  },
  {
