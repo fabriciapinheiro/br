@@ -12,10 +12,10 @@
   "id": "seguranca",
   "titulo": "PEC da Segurança Pública + Ministério da Segurança",
   "area": "Segurança",
-  "status": "Em tramitação",
-  "detalhe": "CCJ do Senado aprovou em 14/out; votação no plenário foi adiada em 15/out. O ministério depende da PEC.",
+  "status": "Aprovada",
+  "detalhe": "PEC aprovada no Senado em 3/nov/2026 (75 a 0 no 2º turno) e segue à promulgação. O ministério depende da PEC.",
   "depende": "Congresso",
-  "descricao": "Coloca na Constituição o Sistema Único de Segurança Pública (SUSP), dá à União papel de coordenação, amplia a atuação da PF e da PRF, permite polícias municipais e reforça os fundos de segurança e penitenciário com dinheiro protegido de bloqueios. Depois de aprovada, o plano prevê criar o Ministério da Segurança Pública. A PEC aguarda votação no plenário do Senado."
+  "descricao": "Coloca na Constituição o Sistema Único de Segurança Pública (SUSP), dá à União papel de coordenação, amplia a atuação da PF e da PRF, permite polícias municipais e reforça os fundos de segurança e penitenciário com dinheiro protegido de bloqueios. Depois de aprovada, o plano prevê criar o Ministério da Segurança Pública. A PEC foi aprovada pelo Congresso e aguarda promulgação; a redução da maioridade penal ficou de fora e vai tramitar separadamente."
  },
  {
   "id": "apps",
