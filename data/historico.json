@@ -319,7 +319,7 @@
  {
   "id": "pib",
   "ano": 2026,
-  "valor": 1.76,
+  "valor": 1.75,
   "tipo": "projeção"
  },
  {
@@ -715,7 +715,7 @@
  {
   "id": "ibov",
   "ano": 2026,
-  "valor": 168498,
+  "valor": 172236,
   "tipo": "parcial"
  },
  {
