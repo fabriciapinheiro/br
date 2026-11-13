@@ -1,5 +1,13 @@
 [
  {
+  "id": "ajustefiscal",
+  "materia": "Pacote de ajuste fiscal do governo",
+  "tipo": "PLP",
+  "situacao": "Texto-base aprovado",
+  "data": "2026-11-12",
+  "resumo": "Texto-base aprovado em 12/nov por 45 a 31 (urgência por 40 a 38). Prevê economia de R$ 50 bi a R$ 60 bi em 2027: novo corte linear de 10% em benefícios tributários, teto de crescimento real das despesas de 2% (era 2,5%) quando os gatilhos fiscais forem acionados e prazo para regulamentar supersalários. Destaques devem ser votados em 17/nov; depois segue para a Câmara. Fonte: Agência Brasil."
+ },
+ {
   "id": "pec6x1",
   "materia": "PEC 221/2019 — fim da escala 6x1",
   "tipo": "PEC",
