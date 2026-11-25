@@ -31,7 +31,7 @@
   "titulo": "Manter o arcabouço fiscal",
   "area": "Economia",
   "status": "Em execução",
-  "detalhe": "Regra fiscal atual continua valendo.",
+  "detalhe": "Regra fiscal segue valendo. A Lei Complementar 239/2026, sancionada em 24/nov, reduz de 2,5% para 2% o teto de crescimento real das despesas em anos de contingenciamento, a partir de 2027.",
   "depende": "Governo",
   "descricao": "Manter a regra fiscal criada em 2023: gastos só podem crescer 70% do aumento da receita, entre 0,6% e 2,5% acima da inflação, com metas de resultado primário. O mercado cobra metas mais ambiciosas, já que a dívida segue subindo mesmo com a regra."
  },
@@ -58,7 +58,7 @@
   "titulo": "Rever benefícios fiscais ineficientes",
   "area": "Economia",
   "status": "Proposta",
-  "detalhe": "Sem projeto específico ainda.",
+  "detalhe": "A Lei Complementar 239/2026 (sancionada em 24/nov) amplia o corte linear de benefícios tributários; a revisão específica dos incentivos ineficientes ainda não tem projeto.",
   "depende": "Congresso",
   "descricao": "Revisar isenções e incentivos fiscais considerados ineficientes, que somam centenas de bilhões por ano. Em 2025 o Congresso aprovou um corte linear de 10% em parte deles. O plano não detalha quais benefícios seriam revistos, e cada corte enfrenta pressão dos setores atingidos."
  },
